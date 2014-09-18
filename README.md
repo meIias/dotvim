@@ -10,4 +10,7 @@
 	git submodule update
 
 ##Extra
-	need to adjust .ycm_extra_conf.py if not on osx
+	cd ~/.vim/bundle/YouCompleteMe
+	./install.sh --clang-completer
+
+	!! need to adjust .ycm_extra_conf.py if not on osx
