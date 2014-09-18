@@ -8,6 +8,11 @@ set list
 set listchars=tab:▸\ ,eol:¬
 
 "----------------------------------------------
+"remap : --> ; for commands
+nore ; :
+nore \ ;
+
+"----------------------------------------------
 let g:ycm_path_to_python_interpreter = '/usr/bin/python'
 
 "----------------------------------------------
@@ -38,7 +43,7 @@ let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 
 "----------------------------------------------
 "font
-set guifont=M+\ 1mn\ medium:h12
+set guifont=M+\ 1mn\ medium:h10
 
 "----------------------------------------------
 " Basic settings for colorscheme and general look
@@ -88,13 +93,6 @@ map <F5> :wall!<CR>:!sbcl --load foo.cl<CR><CR>
 ""set titlestring=%-.55F\ 
 
 "----------------------------------------------
-" If you prefer the Omni-Completion tip window to close when a selection is
-" made, these lines close it on movement in insert mode or when leaving
-" insert mode
-""autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-""autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-
-"----------------------------------------------
 " This disables the scratch preview on YCM
 " preview doesn't seem to play nice with tab
 set completeopt-=preview
@@ -103,7 +101,7 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
 "----------------------------------------------
-set statusline=%F%m%r%h%w\%=%{fugitive#statusline()}\ %([%{Tlist_Get_Tagname_By_Line()}]%)\ %y\ [%{&fileencoding?&fileencoding:&encoding}]\ [L:\%l\ C:\%c\ A:\%b\ H:\x%B\ P:\%p%%]
+set statusline=%F%m%r%h%w\%=%{fugitive#statusline()}\ %{tagbar#currenttag('[%s]','')}\ %y\ [Win:%{WindowNumber()}]\ [%{&fileencoding?&fileencoding:&encoding}]\ [L:\%l\ C:\%c\ A:\%b\ H:\x%B\ P:\%p%%]\ [%{strftime(\"%m.%d.%Y\//%I:%M%p\//Day:%j\")}]
 
 "----------------------------------------------
 " Process taglist without opening
@@ -131,7 +129,6 @@ map <C-H> :tabp<CR>
 " Color name (:help cterm-colors) or ANSI code
 let g:limelight_conceal_ctermfg = 'gray'
 let g:limelight_conceal_ctermfg = 240
-
 
 "----------------------------------------------
 " use :SemanticHighlight to get full variable highlights, :e to undo
@@ -170,3 +167,90 @@ endif
 map <leader>lt :Limelight!!0.8 <cr>
 
 "----------------------------------------------
+"view current buffer in nerdtree
+ map <leader>r :NERDTreeFind<cr>
+
+"----------------------------------------------
+" use :BD (caps) to close a buffer but leave the window open(for nerdtree w/mult. files).
+
+"----------------------------------------------
+"map tagbar to ,tg to open/close it
+nmap <leader>tg :TagbarToggle<CR>
+"nmap <leader>tg :TlistToggle<CR>
+
+
+"----------------------------------------------
+"map dox comment generator to ,/
+map <leader>/ :Dox <cr>
+
+"----------------------------------------------
+"taglist options
+"let Tlist_Use_Right_Window = 1
+"let Tlist_WinWidth = 35
+"let Tlist_Display_Prototype = 1
+
+let g:tagbar_width = 38
+"----------------------------------------------
+" a.vim guide
+
+" :A switches to the header file corresponding to the current file being
+" edited (or vise versa) 
+" :AS splits and switches 
+" :AV vertical splits and switches 
+" :AT new tab and switches 
+" :AN cycles through matches 
+" :IH switches to file under cursor 
+" :IHS splits and switches 
+" :IHV vertical splits and switches 
+" :IHT new tab and switches 
+" :IHN cycles through matches 
+" <Leader>ih switches to file under cursor 
+" <Leader>is switches to the alternate file of file under cursor (e.g. on
+" <foo.h> switches to foo.cpp) 
+" <Leader>ihn cycles through matches 
+
+"----------------------------------------------
+" window management
+"  add numbers for each open window
+" ,1-2-3-4-5 to chang windows!
+
+let i = 1
+while i <= 9
+	execute 'nnoremap <Leader>' . i . ' :' . i . 'wincmd w<CR>'
+	let i = i + 1
+endwhile
+
+function! WindowNumber()
+	let str=tabpagewinnr(tabpagenr())
+	return str
+endfunction
+
+"----------------------------------------------
+"vertical line spacing for gui
+"set linespace=2
+
+"----------------------------------------------
+"remove guivim scrollbars, toolbars
+set guioptions-=L
+set guioptions-=r
+set guioptions-=T
+
+"----------------------------------------------
+"change color in gvim based on insert or normal mode
+"au InsertEnter * hi StatusLine guibg=Red
+"au InsertLeave * hi StatusLine guibg=#ccdc90
+
+"----------------------------------------------
+"match brackets with color not highlight
+hi MatchParen guibg=NONE guifg=orange gui=bold
+"hi MatchParen cterm=bold ctermbg=none ctermfg=orange
+
+"----------------------------------------------
+"semantic highlight toggle
+nnoremap <Leader>s :SemanticHighlightToggle<cr>
+
+"----------------------------------------------
+"alternate vim mapping h, cpp
+nnoremap <Leader>h :A<cr>
+nnoremap <Leader>hv :AV<cr>
+
