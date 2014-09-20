@@ -317,3 +317,6 @@ autocmd  User GoyoEnter nested setlocal list! cursorline!
 nnoremap <silent> <leader>z :Goyo<cr>
 
 "----------------------------------------------
+"add javascript library syntax
+let g:used_javascript_libs = 'jquery,angularjs,requirejs'
+
