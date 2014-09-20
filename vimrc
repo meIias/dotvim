@@ -31,6 +31,14 @@ nnoremap <Leader>D :let NERDTreeQuitOnOpen = 0<bar>NERDTreeToggle<CR>
 let NERDTreeMinimalUI = 1
 
 "----------------------------------------------
+"max width, horizontal on gvim
+set fuopt=maxvert,maxhorz
+
+"----------------------------------------------
+"iterm scrolling
+set mouse=a
+
+"----------------------------------------------
 let mapleader=","
 
 "----------------------------------------------
