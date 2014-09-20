@@ -275,3 +275,7 @@ nnoremap <Leader>hv :AV<cr>
 "javascript lint mapping
 map <leader>lj :JSHint<cr>
 
+"----------------------------------------------
+"set gvim transparency
+set transparency=15
+
