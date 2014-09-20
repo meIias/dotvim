@@ -146,6 +146,12 @@ function! s:goyo_on(width)
     silent! GitGutterDisable
   endif
 
+  " vim-signify
+  let t:goyo_disabled_signify = exists('b:sy') && b:sy.active
+  if t:goyo_disabled_signify
+    SignifyToggle
+  endif
+
   " vim-airline
   let t:goyo_disabled_airline = exists("#airline")
   if t:goyo_disabled_airline
@@ -218,6 +224,7 @@ function! s:goyo_on(width)
   if exists('g:goyo_callbacks[0]')
     call g:goyo_callbacks[0]()
   endif
+  silent! doautocmd User GoyoEnter
 endfunction
 
 function! s:goyo_off()
@@ -242,6 +249,7 @@ function! s:goyo_off()
 
   let goyo_revert             = t:goyo_revert
   let goyo_disabled_gitgutter = t:goyo_disabled_gitgutter
+  let goyo_disabled_signify   = t:goyo_disabled_signify
   let goyo_disabled_airline   = t:goyo_disabled_airline
   let goyo_disabled_powerline = t:goyo_disabled_powerline
   let goyo_disabled_lightline = t:goyo_disabled_lightline
@@ -278,6 +286,12 @@ function! s:goyo_off()
     silent! GitGutterEnable
   endif
 
+  if goyo_disabled_signify
+    silent! if !b:sy.active
+      SignifyToggle
+    endif
+  endif
+
   if goyo_disabled_airline && !exists("#airline")
     AirlineToggle
     silent! AirlineRefresh
@@ -299,6 +313,7 @@ function! s:goyo_off()
   if exists('g:goyo_callbacks[1]')
     call g:goyo_callbacks[1]()
   endif
+  silent! doautocmd User GoyoLeave
 endfunction
 
 function! s:goyo(bang, ...)

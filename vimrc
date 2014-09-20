@@ -292,14 +292,17 @@ function! s:goyo_enter()
 endfunction
 
 function! s:goyo_leave()
-	set cursorline!
-	set list!
+	set cursorline
+	set list
 endfunction
 
 autocmd! User GoyoEnter
-autocmd! User GoyoLeave
-autocmd  User GoyoEnter nested call <SID>goyo_enter()
-autocmd  User GoyoLeave nested call <SID>goyo_leave()
+autocmd  User GoyoEnter nested setlocal list! cursorline!
+
+"autocmd! User GoyoEnter
+"autocmd! User GoyoLeave
+"autocmd  User GoyoEnter nested call <SID>goyo_enter()
+"autocmd  User GoyoLeave nested call <SID>goyo_leave()
 
 "----------------------------------------------
 "cursorline mapping
@@ -313,3 +316,4 @@ autocmd  User GoyoLeave nested call <SID>goyo_leave()
 "goyo mapping
 nnoremap <silent> <leader>z :Goyo<cr>
 
+"----------------------------------------------
