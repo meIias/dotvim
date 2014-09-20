@@ -31,6 +31,10 @@ nnoremap <Leader>D :let NERDTreeQuitOnOpen = 0<bar>NERDTreeToggle<CR>
 let NERDTreeMinimalUI = 1
 
 "----------------------------------------------
+"remove help at top of tagbar window
+let g:tagbar_compact = 1
+
+"----------------------------------------------
 "max width, horizontal on gvim
 set fuopt=maxvert,maxhorz
 
