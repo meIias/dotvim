@@ -27,6 +27,10 @@ nnoremap <Leader>d :let NERDTreeQuitOnOpen = 1<bar>NERDTreeToggle<CR>
 nnoremap <Leader>D :let NERDTreeQuitOnOpen = 0<bar>NERDTreeToggle<CR>
 
 "----------------------------------------------
+"remove help text at top of nerdtree window
+let NERDTreeMinimalUI = 1
+
+"----------------------------------------------
 let mapleader=","
 
 "----------------------------------------------
