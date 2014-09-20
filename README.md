@@ -17,6 +17,6 @@
 
 ##Screenshots
 
-![alt tag](https://raw.github.com/meIias/dotvim/master/screenshot3.png)
-![alt tag](https://raw.github.com/meIias/dotvim/master/screenshot1.png)
-![alt tag](https://raw.github.com/meIias/dotvim/master/screenshot2.png)
+![alt tag](https://raw.github.com/meIias/dotvim/master/screenshots/screenshot3.png)
+![alt tag](https://raw.github.com/meIias/dotvim/master/screenshots/screenshot1.png)
+![alt tag](https://raw.github.com/meIias/dotvim/master/screenshots/screenshot2.png)
