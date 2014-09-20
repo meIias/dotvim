@@ -66,7 +66,7 @@ let g:seoul256_background = 233
 colorscheme  seoul256
 
 "----------------------------------------------
-"set cursorline
+set cursorline
 "set cursorcolumn
 "hi CursorLine term=bold cterm=bold guibg=Grey40
 "hi CursorLine   cterm=NONE ctermbg=234 ctermfg=NONE
@@ -154,7 +154,8 @@ if !has('gui_running')
 	" remove the highlighting for the gutter signs
 	hi clear YcmErrorSign
 	hi clear YcmWarningSign
-	let g:syntastic_error_symbol = '💥'
+	"let g:syntastic_error_symbol = '💥'
+	let g:syntastic_error_symbol = '🔺'
 	"let g:syntastic_error_symbol = '😖'
 	let g:syntastic_warning_symbol = '👉'
 else
@@ -188,8 +189,8 @@ map <leader>/ :Dox <cr>
 "let Tlist_Use_Right_Window = 1
 "let Tlist_WinWidth = 35
 "let Tlist_Display_Prototype = 1
-
 let g:tagbar_width = 38
+
 "----------------------------------------------
 " a.vim guide
 
@@ -212,7 +213,7 @@ let g:tagbar_width = 38
 "----------------------------------------------
 " window management
 "  add numbers for each open window
-" ,1-2-3-4-5 to chang windows!
+" ,1-2-3-4-5 to change windows!
 
 let i = 1
 while i <= 9
@@ -243,7 +244,7 @@ set guioptions-=T
 "----------------------------------------------
 "match brackets with color not highlight
 hi MatchParen guibg=NONE guifg=orange gui=bold
-"hi MatchParen cterm=bold ctermbg=none ctermfg=orange
+hi MatchParen cterm=bold ctermbg=none ctermfg=172
 
 "----------------------------------------------
 "semantic highlight toggle
@@ -253,4 +254,8 @@ nnoremap <Leader>s :SemanticHighlightToggle<cr>
 "alternate vim mapping h, cpp
 nnoremap <Leader>h :A<cr>
 nnoremap <Leader>hv :AV<cr>
+
+"----------------------------------------------
+"javascript lint mapping
+map <leader>lj :JSHint<cr>
 
