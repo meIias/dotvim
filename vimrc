@@ -181,11 +181,11 @@ endif
 
 "----------------------------------------------
 "map limelight to , lt
-map <leader>lt :Limelight!!0.8 <cr>
+map <silent> <leader>lt :Limelight!!0.8 <cr>
 
 "----------------------------------------------
 "view current buffer in nerdtree
- map <leader>r :NERDTreeFind<cr>
+ map <silent> <leader>r :NERDTreeFind<cr>
 
 "----------------------------------------------
 " use :BD (caps) to close a buffer but leave the window open(for nerdtree w/mult. files).
@@ -198,7 +198,7 @@ nmap <leader>tg :TagbarToggle<CR>
 
 "----------------------------------------------
 "map dox comment generator to ,/
-map <leader>/ :Dox <cr>
+map <silent> <leader>/ :Dox <cr>
 
 "----------------------------------------------
 "taglist options
@@ -273,7 +273,7 @@ nnoremap <Leader>hv :AV<cr>
 
 "----------------------------------------------
 "javascript lint mapping
-map <leader>lj :JSHint<cr>
+map <silent> <leader>lj :JSHint<cr>
 
 "----------------------------------------------
 "set gvim transparency
