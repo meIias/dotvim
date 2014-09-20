@@ -279,3 +279,37 @@ map <leader>lj :JSHint<cr>
 "set gvim transparency
 set transparency=15
 
+"----------------------------------------------
+"set transparency mapping
+ map <silent> <Leader>t4 :set transparency=0 <CR>
+ map <silent> <Leader>t5 :set transparency=15 <CR>
+
+"----------------------------------------------
+"remove cursorline in distraction free mode
+function! s:goyo_enter()
+	set cursorline!
+	set list!
+endfunction
+
+function! s:goyo_leave()
+	set cursorline!
+	set list!
+endfunction
+
+autocmd! User GoyoEnter
+autocmd! User GoyoLeave
+autocmd  User GoyoEnter nested call <SID>goyo_enter()
+autocmd  User GoyoLeave nester call <SID>goyo_leave()
+
+"----------------------------------------------
+"cursorline mapping
+ map <silent> <Leader>kl :set cursorline! <CR>
+
+"----------------------------------------------
+"set list mapping
+ map <silent> <Leader>ll :set list! <CR>
+
+"----------------------------------------------
+"goyo mapping
+nnoremap <silent> <leader>z :Goyo<cr>
+
