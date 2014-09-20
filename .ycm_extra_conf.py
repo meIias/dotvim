@@ -33,10 +33,10 @@ flags = [
     '-isystem','/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.1/include',
     '-isystem','/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include',
     '-isystem','/usr/include',
+    '-isystem','/usr/include/c++/4.2.1',
+    '-isystem','/usr/include/c++/v1',
     '-isystem','/System/Library/Frameworks (framework directory)',
     '-isystem','/Library/Frameworks (framework directory)'
-
-
     '-isystem', '/usr/lib/c++/v1',
     '-isystem', '/System/Library/Frameworks/Python.framework/Headers',
     '-isystem', '/usr/local/include',
