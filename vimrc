@@ -320,3 +320,12 @@ nnoremap <silent> <leader>z :Goyo<cr>
 "add javascript library syntax
 let g:used_javascript_libs = 'jquery,angularjs,requirejs'
 
+"----------------------------------------------
+"use the mouse to scroll horizontally
+if has('gui_running')
+	set nowrap
+endif
+
+"----------------------------------------------
+"longer history since it's not 1999 anymore
+set history=1000
