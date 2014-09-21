@@ -277,7 +277,7 @@ map <silent> <leader>lj :JSHint<cr>
 
 "----------------------------------------------
 "set gvim transparency
-set transparency=15
+"set transparency=15
 
 "----------------------------------------------
 "set transparency mapping
