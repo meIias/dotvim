@@ -264,7 +264,7 @@ hi MatchParen cterm=bold ctermbg=none ctermfg=172
 
 "----------------------------------------------
 "semantic highlight toggle
-nnoremap <Leader>s :SemanticHighlightToggle<cr>
+nnoremap <silent> <Leader>s :SemanticHighlightToggle<cr>
 
 "----------------------------------------------
 "alternate vim mapping h, cpp
