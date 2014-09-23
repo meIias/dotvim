@@ -329,3 +329,9 @@ endif
 "----------------------------------------------
 "longer history since it's not 1999 anymore
 set history=1000
+
+"----------------------------------------------
+"remap escape to jk kj
+inoremap jk <Esc>
+inoremap kj <Esc>
+
