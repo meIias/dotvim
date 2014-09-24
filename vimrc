@@ -5,7 +5,7 @@ execute pathogen#infect()
 
 "----------------------------------------------
 set list
-set listchars=tab:▸\ ,eol:¬,trail:°
+set listchars=tab:▸\ ,eol:¬,trail:·
 
 "----------------------------------------------
 "remap : --> ; for commands
