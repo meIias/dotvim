@@ -4,6 +4,10 @@
 execute pathogen#infect()
 
 "----------------------------------------------
+"no compatibility w/ vi
+set nocompatible
+
+"----------------------------------------------
 set list
 set listchars=tab:▸\ ,eol:¬,trail:·
 
