@@ -5,7 +5,7 @@ execute pathogen#infect()
 
 "----------------------------------------------
 set list
-set listchars=tab:▸\ ,eol:¬
+set listchars=tab:▸\ ,eol:¬,trail:°
 
 "----------------------------------------------
 "remap : --> ; for commands
@@ -335,3 +335,4 @@ set history=1000
 inoremap jk <Esc>
 inoremap kj <Esc>
 
+"----------------------------------------------
