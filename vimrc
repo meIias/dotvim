@@ -83,7 +83,11 @@ set autoindent
 
 "----------------------------------------------
 let g:seoul256_background = 233
-colorscheme  seoul256
+if has ('gui_running')
+	colorscheme gotham
+else
+	colorscheme  seoul256
+endif
 
 "----------------------------------------------
 set cursorline
@@ -263,7 +267,7 @@ set guioptions-=T
 
 "----------------------------------------------
 "match brackets with color not highlight
-hi MatchParen guibg=NONE guifg=orange gui=bold
+hi MatchParen guibg=NONE guifg=magenta gui=bold
 hi MatchParen cterm=bold ctermbg=none ctermfg=172
 
 "----------------------------------------------
