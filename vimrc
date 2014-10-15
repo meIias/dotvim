@@ -86,7 +86,8 @@ let g:seoul256_background = 233
 if has ('gui_running')
 	colorscheme gotham
 else
-	colorscheme  seoul256
+	"colorscheme  seoul256
+	colorscheme gotham
 endif
 
 "----------------------------------------------
