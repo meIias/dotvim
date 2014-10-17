@@ -35,6 +35,11 @@ flags = [
     '-isystem','/usr/include',
     '-isystem','/usr/include/c++/4.2.1',
     '-isystem','/usr/include/c++/v1',
+    '-isystem','/usr/local/include/c++/v1',
+    '-isystem', '/usr/bin/c++',
+    '-isystem', '/usr/bin/cpp',
+    '-isystem', '/Applications/Xcode.app/Contents/Developer/usr/lib/llvm-gcc/4.2.1',
+    '-isystem', '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/',
     '-isystem','/System/Library/Frameworks (framework directory)',
     '-isystem','/Library/Frameworks (framework directory)'
     '-isystem', '/usr/lib/c++/v1',
