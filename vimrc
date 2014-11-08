@@ -84,10 +84,11 @@ set autoindent
 "----------------------------------------------
 let g:seoul256_background = 233
 if has ('gui_running')
-	colorscheme gotham
+	"colorscheme gotham
+	colorscheme  seoul256
 else
-	"colorscheme  seoul256
-	colorscheme gotham
+	colorscheme  seoul256
+	"colorscheme gotham
 endif
 
 "----------------------------------------------
@@ -179,8 +180,8 @@ if !has('gui_running')
 	" remove the highlighting for the gutter signs
 	hi clear YcmErrorSign
 	hi clear YcmWarningSign
-	"let g:syntastic_error_symbol = '💥'
-	let g:syntastic_error_symbol = '🔺'
+	let g:syntastic_error_symbol = '💥'
+	"let g:syntastic_error_symbol = '🔺'
 	"let g:syntastic_error_symbol = '😖'
 	let g:syntastic_warning_symbol = '👉'
 else
@@ -296,22 +297,24 @@ map <silent> <leader>lj :JSHint<cr>
 "----------------------------------------------
 "remove cursorline in distraction free mode
 function! s:goyo_enter()
+	:Limelight0.8 
 	set cursorline!
 	set list!
 endfunction
 
 function! s:goyo_leave()
-	set cursorline
-	set list
+	hi MatchParen cterm=bold ctermbg=none ctermfg=172
+	"set cursorline
+	"set list
 endfunction
 
 autocmd! User GoyoEnter
 autocmd  User GoyoEnter nested setlocal list! cursorline!
 
 "autocmd! User GoyoEnter
-"autocmd! User GoyoLeave
+autocmd! User GoyoLeave
 "autocmd  User GoyoEnter nested call <SID>goyo_enter()
-"autocmd  User GoyoLeave nested call <SID>goyo_leave()
+autocmd  User GoyoLeave nested call <SID>goyo_leave()
 
 "----------------------------------------------
 "cursorline mapping
@@ -345,3 +348,14 @@ inoremap jk <Esc>
 inoremap kj <Esc>
 
 "----------------------------------------------
+"remove bell sound
+set noerrorbells
+set vb t_vb=
+
+"----------------------------------------------
+"highlight search values
+set hlsearch
+
+"----------------------------------------------
+"no swp file
+set noswapfile
