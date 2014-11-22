@@ -82,14 +82,17 @@ set smarttab
 set autoindent
 
 "----------------------------------------------
+
 let g:seoul256_background = 233
-if has ('gui_running')
-	"colorscheme gotham
-	colorscheme  seoul256
-else
-	colorscheme  seoul256
-	"colorscheme gotham
-endif
+colorscheme seoul256 
+"if has ('gui_running')
+"	"colorscheme gotham
+"	colorscheme  seoul256
+"else
+"	colorscheme hemisu
+"	"colorscheme  seoul256
+"	"colorscheme gotham
+"endif
 
 "----------------------------------------------
 set cursorline
@@ -127,7 +130,7 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
 "----------------------------------------------
-set statusline=%F%m%r%h%w\%=%{fugitive#statusline()}\ %{tagbar#currenttag('[%s]','')}\ %y\ [Win:%{WindowNumber()}]\ [%{&fileencoding?&fileencoding:&encoding}]\ [L:\%l\ C:\%c\ A:\%b\ H:\x%B\ P:\%p%%]\ [%{strftime(\"%m.%d.%Y\//%I:%M%p\//Day:%j\")}]
+set statusline=%F%m%r%h%w\%=💎\ 😖\ 👹\ 😈\ 😱\ 💎\ %{fugitive#statusline()}\ %{tagbar#currenttag('[%s]','')}\ %y\ [Win:%{WindowNumber()}]\ [%{&fileencoding?&fileencoding:&encoding}]\ [L:\%l\ C:\%c\ A:\%b\ H:\x%B\ P:\%p%%]\ [%{strftime(\"%m.%d.%Y\//%I:%M%p\//Day:%j\")}]
 
 "----------------------------------------------
 " Process taglist without opening
