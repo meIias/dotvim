@@ -84,7 +84,7 @@ set autoindent
 "----------------------------------------------
 
 let g:seoul256_background = 233
-colorscheme seoul256 
+colorscheme seoul256
 "if has ('gui_running')
 "	"colorscheme gotham
 "	colorscheme  seoul256
@@ -119,7 +119,7 @@ map <F5> :wall!<CR>:!sbcl --load foo.cl<CR><CR>
 "----------------------------------------------
 ""set title
 " configure title to look like: Vim /path/to/file
-""set titlestring=%-.55F\ 
+""set titlestring=%-.55F\
 
 "----------------------------------------------
 " This disables the scratch preview on YCM
@@ -130,7 +130,7 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
 "----------------------------------------------
-set statusline=%F%m%r%h%w\%=💎\ 😖\ 👹\ 😈\ 😱\ 💎\ %{fugitive#statusline()}\ %{tagbar#currenttag('[%s]','')}\ %y\ [Win:%{WindowNumber()}]\ [%{&fileencoding?&fileencoding:&encoding}]\ [L:\%l\ C:\%c\ A:\%b\ H:\x%B\ P:\%p%%]\ [%{strftime(\"%m.%d.%Y\//%I:%M%p\//Day:%j\")}]
+set statusline=%F%m%r%h%w\%=%{fugitive#statusline()}\ %{tagbar#currenttag('[%s]','')}\ %y\ [Win:%{WindowNumber()}]\ [%{&fileencoding?&fileencoding:&encoding}]\ [L:\%l\ C:\%c\ A:\%b\ H:\x%B\ P:\%p%%]\ [%{strftime(\"%m.%d.%Y\//%I:%M%p\//Day:%j\")}]
 
 "----------------------------------------------
 " Process taglist without opening
@@ -224,20 +224,20 @@ let g:tagbar_width = 38
 " a.vim guide
 
 " :A switches to the header file corresponding to the current file being
-" edited (or vise versa) 
-" :AS splits and switches 
-" :AV vertical splits and switches 
-" :AT new tab and switches 
-" :AN cycles through matches 
-" :IH switches to file under cursor 
-" :IHS splits and switches 
-" :IHV vertical splits and switches 
-" :IHT new tab and switches 
-" :IHN cycles through matches 
-" <Leader>ih switches to file under cursor 
+" edited (or vise versa)
+" :AS splits and switches
+" :AV vertical splits and switches
+" :AT new tab and switches
+" :AN cycles through matches
+" :IH switches to file under cursor
+" :IHS splits and switches
+" :IHV vertical splits and switches
+" :IHT new tab and switches
+" :IHN cycles through matches
+" <Leader>ih switches to file under cursor
 " <Leader>is switches to the alternate file of file under cursor (e.g. on
-" <foo.h> switches to foo.cpp) 
-" <Leader>ihn cycles through matches 
+" <foo.h> switches to foo.cpp)
+" <Leader>ihn cycles through matches
 
 "----------------------------------------------
 " window management
@@ -300,7 +300,7 @@ map <silent> <leader>lj :JSHint<cr>
 "----------------------------------------------
 "remove cursorline in distraction free mode
 function! s:goyo_enter()
-	:Limelight0.8 
+	:Limelight0.8
 	set cursorline!
 	set list!
 endfunction
@@ -362,3 +362,16 @@ set hlsearch
 "----------------------------------------------
 "no swp file
 set noswapfile
+
+"----------------------------------------------
+"no message when opening vim
+set shortmess+=I
+
+"----------------------------------------------
+"trim whitespace on save
+autocmd BufWritePre * %s/\s\+$//e
+
+"----------------------------------------------
+"place cursor at last position b4 close on open
+autocmd BufReadPost * normal `"
+
