@@ -375,3 +375,7 @@ autocmd BufWritePre * %s/\s\+$//e
 "place cursor at last position b4 close on open
 autocmd BufReadPost * normal `"
 
+"----------------------------------------------
+"allow buffers to be hidden with unsaved changes
+set hidden
+
