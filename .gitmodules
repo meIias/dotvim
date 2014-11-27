@@ -10,10 +10,6 @@
 	path = bundle/javascript-libraries-syntax.vim
 	url = https://github.com/othree/javascript-libraries-syntax.vim.git
 
-[submodule "bundle/minimap-vim"]
-	path = bundle/minimap-vim
-	url = https://github.com/koron/minimap-vim.git
-
 [submodule "bundle/nerdcommenter"]
 	path = bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
@@ -50,10 +46,6 @@
 	path = bundle/vim-bufferline
 	url = https://github.com/bling/vim-bufferline.git
 
-[submodule "bundle/vim-colors-solarized"]
-	path = bundle/vim-colors-solarized
-	url = https://github.com/altercation/vim-colors-solarized.git
-
 [submodule "bundle/vim-dispatch"]
 	path = bundle/vim-dispatch
 	url = https://github.com/tpope/vim-dispatch.git
@@ -86,10 +78,3 @@
 	path = bundle/emmet-vim
 	url = https://github.com/mattn/emmet-vim.git
 
-[submodule "bundle/vim-gotham"]
-	path = bundle/vim-gotham
-	url = https://github.com/whatyouhide/vim-gotham.git
-
-[submodule "bundle/ShowMotion"]
-	path = bundle/ShowMotion
-	url = https://github.com/boucherm/ShowMotion.git
