@@ -144,8 +144,8 @@ let g:limelight_conceal_ctermfg = 240
 "bufferline don't echo in command bar
 let g:bufferline_echo = 0
 let g:bufferline_show_bufnr = 0
-let g:bufferline_active_buffer_left = '|'
-let g:bufferline_active_buffer_right = '|'
+let g:bufferline_active_buffer_left = ''
+let g:bufferline_active_buffer_right = ''
 
 
 "----------------------------------------------
@@ -320,12 +320,6 @@ nnoremap f :call g:FindChar( 'f', "forward" )<CR>
 nnoremap t :call g:FindChar( 't', "forward" )<CR>
 nnoremap F :call g:FindChar( 'F', "backward" )<CR>
 nnoremap T :call g:FindChar( 'T', "backward" )<CR>
-
-"----------------------------------------------
-"fix fullscreen issue in gvim, temporarily
-if has('gui_running')
-	autocmd VimEnter * set lines=999
-endif
 
 "----------------------------------------------
 "limelight on enter b/c i like it a lot
