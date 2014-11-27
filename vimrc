@@ -26,7 +26,6 @@ set encoding=utf-8
 "----------------------------------------------
 " \d to open nerdtree and close after file open
 " \D to open nerdtree and keep tree open after file open
-" ctrl + w + w to cycle between tree and open file
 nnoremap <Leader>d :let NERDTreeQuitOnOpen = 1<bar>NERDTreeToggle<CR>
 nnoremap <Leader>D :let NERDTreeQuitOnOpen = 0<bar>NERDTreeToggle<CR>
 
@@ -67,7 +66,10 @@ set guifont=M+\ 1mn\ medium:h10
 
 "----------------------------------------------
 " Basic settings for colorscheme and general look
-set background=dark
+if !has("gui_running")
+	set t_Co=256
+endif
+
 
 "----------------------------------------------
 set number
@@ -80,25 +82,22 @@ set shiftwidth=4
 "set expandtab
 set smarttab
 set autoindent
+"----------------------------------------------
+"let g:seoul256_background = 233
+"colorscheme seoul256
+
+colorscheme saturn
+
+if has ('gui_running')
+	colorscheme vydark
+endif
 
 "----------------------------------------------
-
-let g:seoul256_background = 233
-colorscheme seoul256
-"if has ('gui_running')
-"	"colorscheme gotham
-"	colorscheme  seoul256
-"else
-"	colorscheme hemisu
-"	"colorscheme  seoul256
-"	"colorscheme gotham
-"endif
-
-"----------------------------------------------
-set cursorline
+"set cursorline
 "set cursorcolumn
 "hi CursorLine term=bold cterm=bold guibg=Grey40
 "hi CursorLine   cterm=NONE ctermbg=234 ctermfg=NONE
+hi StatusLine ctermbg=NONE
 
 "----------------------------------------------
 " For nerd commenter
@@ -117,11 +116,6 @@ set laststatus=2
 map <F5> :wall!<CR>:!sbcl --load foo.cl<CR><CR>
 
 "----------------------------------------------
-""set title
-" configure title to look like: Vim /path/to/file
-""set titlestring=%-.55F\
-
-"----------------------------------------------
 " This disables the scratch preview on YCM
 " preview doesn't seem to play nice with tab
 set completeopt-=preview
@@ -130,11 +124,8 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
 "----------------------------------------------
-set statusline=%F%m%r%h%w\%=%{fugitive#statusline()}\ %{tagbar#currenttag('[%s]','')}\ %y\ [Win:%{WindowNumber()}]\ [%{&fileencoding?&fileencoding:&encoding}]\ [L:\%l\ C:\%c\ A:\%b\ H:\x%B\ P:\%p%%]\ [%{strftime(\"%m.%d.%Y\//%I:%M%p\//Day:%j\")}]
-
-"----------------------------------------------
-" Process taglist without opening
-let Tlist_Process_File_Always = 1
+"set statusline=%F%m%r%h%w\%=%{fugitive#statusline()}\ %{tagbar#currenttag('[%s]','')}\ %y\ [Win:%{WindowNumber()}]\ [%{&fileencoding?&fileencoding:&encoding}]\ [L:\%l\ C:\%c\ A:\%b\ H:\x%B\ P:\%p%%]\ [%{strftime(\"%m.%d.%Y\//%I:%M%p\//Day:%j\")}]
+set statusline=%F%m%r%h%w\%{fugitive#statusline()}%=%l,%c\ x%B
 
 "----------------------------------------------
 " map buffer switch to ctrlj ctrlk
@@ -144,33 +135,14 @@ map <C-L> :tabn<CR>
 map <C-H> :tabp<CR>
 
 "----------------------------------------------
-"make a session to save
-"Plus, you can save sessions of vim
-"
-":mksession! ~/today.ses
-"The above command saves the current open file buffers and settings to
-"~/today.ses. You can load that session by using
-"
-"vim -S ~/today.ses
-
-"----------------------------------------------
 " for limelight.vim
 " Color name (:help cterm-colors) or ANSI code
 let g:limelight_conceal_ctermfg = 'gray'
 let g:limelight_conceal_ctermfg = 240
 
 "----------------------------------------------
-" use :SemanticHighlight to get full variable highlights, :e to undo
-" use :Goyo to get distraction free mode, :Goyo! to undo
-" use :Limelight to get lighting paragraphs, :Limelight! to undo
-
-"----------------------------------------------
 "bufferline don't echo in command bar
 "let g:bufferline_echo = 0
-
-"----------------------------------------------
-"let g:ctrlp_map = '<leader>t'
-"let g:ctrlp_working_path_mode = 'c'
 
 "----------------------------------------------
 "snipmate triggers, can't be tab b/c of ycm
@@ -184,8 +156,6 @@ if !has('gui_running')
 	hi clear YcmErrorSign
 	hi clear YcmWarningSign
 	let g:syntastic_error_symbol = '💥'
-	"let g:syntastic_error_symbol = '🔺'
-	"let g:syntastic_error_symbol = '😖'
 	let g:syntastic_warning_symbol = '👉'
 else
 	let g:syntastic_warning_symbol = ':('
@@ -206,8 +176,6 @@ map <silent> <leader>lt :Limelight!!0.8 <cr>
 "----------------------------------------------
 "map tagbar to ,tg to open/close it
 nmap <leader>tg :TagbarToggle<CR>
-"nmap <leader>tg :TlistToggle<CR>
-
 
 "----------------------------------------------
 "map dox comment generator to ,/
@@ -215,29 +183,7 @@ map <silent> <leader>/ :Dox <cr>
 
 "----------------------------------------------
 "taglist options
-"let Tlist_Use_Right_Window = 1
-"let Tlist_WinWidth = 35
-"let Tlist_Display_Prototype = 1
 let g:tagbar_width = 38
-
-"----------------------------------------------
-" a.vim guide
-
-" :A switches to the header file corresponding to the current file being
-" edited (or vise versa)
-" :AS splits and switches
-" :AV vertical splits and switches
-" :AT new tab and switches
-" :AN cycles through matches
-" :IH switches to file under cursor
-" :IHS splits and switches
-" :IHV vertical splits and switches
-" :IHT new tab and switches
-" :IHN cycles through matches
-" <Leader>ih switches to file under cursor
-" <Leader>is switches to the alternate file of file under cursor (e.g. on
-" <foo.h> switches to foo.cpp)
-" <Leader>ihn cycles through matches
 
 "----------------------------------------------
 " window management
@@ -266,11 +212,6 @@ set guioptions-=r
 set guioptions-=T
 
 "----------------------------------------------
-"change color in gvim based on insert or normal mode
-"au InsertEnter * hi StatusLine guibg=Red
-"au InsertLeave * hi StatusLine guibg=#ccdc90
-
-"----------------------------------------------
 "match brackets with color not highlight
 hi MatchParen guibg=NONE guifg=magenta gui=bold
 hi MatchParen cterm=bold ctermbg=none ctermfg=172
@@ -280,52 +221,33 @@ hi MatchParen cterm=bold ctermbg=none ctermfg=172
 nnoremap <silent> <Leader>s :SemanticHighlightToggle<cr>
 
 "----------------------------------------------
-"alternate vim mapping h, cpp
-nnoremap <Leader>h :A<cr>
-nnoremap <Leader>hv :AV<cr>
-
-"----------------------------------------------
 "javascript lint mapping
 map <silent> <leader>lj :JSHint<cr>
 
 "----------------------------------------------
-"set gvim transparency
-"set transparency=15
-
-"----------------------------------------------
-"set transparency mapping
- map <silent> <Leader>t4 :set transparency=0 <CR>
- map <silent> <Leader>t5 :set transparency=15 <CR>
-
-"----------------------------------------------
 "remove cursorline in distraction free mode
 function! s:goyo_enter()
-	:Limelight0.8
-	set cursorline!
+	Limelight0.8
+	"set cursorline!
 	set list!
 endfunction
 
 function! s:goyo_leave()
 	hi MatchParen cterm=bold ctermbg=none ctermfg=172
+	hi StatusLine ctermbg=NONE
 	"set cursorline
 	"set list
 endfunction
 
 autocmd! User GoyoEnter
-autocmd  User GoyoEnter nested setlocal list! cursorline!
+"autocmd  User GoyoEnter nested setlocal list! cursorline!
+autocmd  User GoyoEnter nested setlocal list!
+
 
 "autocmd! User GoyoEnter
 autocmd! User GoyoLeave
 "autocmd  User GoyoEnter nested call <SID>goyo_enter()
 autocmd  User GoyoLeave nested call <SID>goyo_leave()
-
-"----------------------------------------------
-"cursorline mapping
- map <silent> <Leader>kl :set cursorline! <CR>
-
-"----------------------------------------------
-"set list mapping
- map <silent> <Leader>ll :set list! <CR>
 
 "----------------------------------------------
 "goyo mapping
@@ -378,4 +300,31 @@ autocmd BufReadPost * normal `"
 "----------------------------------------------
 "allow buffers to be hidden with unsaved changes
 set hidden
+
+"----------------------------------------------
+"showmotion commands
+"Show motion for words:
+nnoremap <silent> w w:call g:Highw()<CR>:call g:HighW()<CR>
+nnoremap <silent> W W:call g:Highw()<CR>:call g:HighW()<CR>
+nnoremap <silent> b b:call g:Highb()<CR>:call g:HighB()<CR>
+nnoremap <silent> B B:call g:Highb()<CR>:call g:HighB()<CR>
+nnoremap <silent> e e:call g:Highe()<CR>:call g:HighE()<CR>
+nnoremap <silent> E E:call g:Highe()<CR>:call g:HighE()<CR>
+
+""Show motion for chars:
+nnoremap f :call g:FindChar( 'f', "forward" )<CR>
+nnoremap t :call g:FindChar( 't', "forward" )<CR>
+nnoremap F :call g:FindChar( 'F', "backward" )<CR>
+nnoremap T :call g:FindChar( 'T', "backward" )<CR>
+
+"----------------------------------------------
+"fix fullscreen issue in gvim, temporarily
+if has('gui_running')
+	set lines=999
+endif
+
+"----------------------------------------------
+"limelight on enter b/c i like it a lot
+autocmd VimEnter * Limelight0.8
+"autocmd VimEnter * Goyo
 
