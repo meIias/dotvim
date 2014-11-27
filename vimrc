@@ -333,10 +333,3 @@ autocmd VimEnter * Limelight0.8
 "autocmd VimEnter * Goyo
 
 "----------------------------------------------
-"buftabline enable for gvim only
-hi link BufTabLineActive TabLineSel
-
-if !has('gui_running')
-	let g:buftabline_show = 0
-	let g:buftabline_indicators = 1
-endif

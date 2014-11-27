@@ -82,6 +82,3 @@
 	path = bundle/ShowMotion
 	url = https://github.com/boucherm/ShowMotion.git
 
-[submodule "bundle/vim-buftabline"]
-	path = bundle/vim-buftabline
-	url = https://github.com/ap/vim-buftabline.git
