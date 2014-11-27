@@ -20,14 +20,19 @@ hi Title         guifg=white
 hi Cursor        guibg=#ffffff
 hi LineNr        guifg=#444455  guibg=#292929
 hi Visual        guibg=#555555
-hi NonText       guifg=#292929  guibg=#292929
+hi NonText       guifg=#353535
+hi SpecialKey    guifg=#353535
 hi StatusLine    guifg=#bbbbbb  guibg=#353535  gui=none
 hi StatusLineNC  guifg=#777777  guibg=#353535  gui=none
 hi VertSplit     guifg=#353535  guibg=#353535  gui=none
 hi ModeMsg       guifg=#99dd99  guibg=#394439  gui=none
 hi ErrorMsg      guifg=#222222  guibg=#ff8888  gui=none
 hi Error         guifg=#ffaaaa  guibg=#333333  gui=none
-hi Folded        guifg=#666677  guibg=#242424 
+hi Folded        guifg=#666677  guibg=#242424
+hi TabLineFill   guifg=#bbbbbb  guibg=#353535  gui=none
+hi TabLine       guifg=#bbbbbb  guibg=#353535  gui=none
+hi SignColumn    guifg=#bbbbbb  guibg=#353535  gui=none
+hi TabLineSel    guibg=#282828
 
 
 " Vim 7.x specific
@@ -48,7 +53,7 @@ if version >= 700
 endif
 
 
-" Syntax highlighting 
+" Syntax highlighting
 hi Comment       guifg=#666677  gui=none
 hi Todo          guifg=#8888aa  guibg=#303030  gui=italic
 hi Operator      guifg=#bbbbbb  gui=none

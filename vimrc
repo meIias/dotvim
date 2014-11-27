@@ -125,7 +125,7 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 
 "----------------------------------------------
 "set statusline=%F%m%r%h%w\%=%{fugitive#statusline()}\ %{tagbar#currenttag('[%s]','')}\ %y\ [Win:%{WindowNumber()}]\ [%{&fileencoding?&fileencoding:&encoding}]\ [L:\%l\ C:\%c\ A:\%b\ H:\x%B\ P:\%p%%]\ [%{strftime(\"%m.%d.%Y\//%I:%M%p\//Day:%j\")}]
-set statusline=%F%m%r%h%w\%{fugitive#statusline()}%=%l,%c\ x%B
+set statusline=%F%m%r%h%w\ %{fugitive#statusline()}%=%l,%c\ x%B
 
 "----------------------------------------------
 " map buffer switch to ctrlj ctrlk
@@ -142,7 +142,11 @@ let g:limelight_conceal_ctermfg = 240
 
 "----------------------------------------------
 "bufferline don't echo in command bar
-"let g:bufferline_echo = 0
+let g:bufferline_echo = 0
+let g:bufferline_show_bufnr = 0
+let g:bufferline_active_buffer_left = '|'
+let g:bufferline_active_buffer_right = '|'
+
 
 "----------------------------------------------
 "snipmate triggers, can't be tab b/c of ycm
@@ -227,7 +231,7 @@ map <silent> <leader>lj :JSHint<cr>
 "----------------------------------------------
 "remove cursorline in distraction free mode
 function! s:goyo_enter()
-	Limelight0.8
+	"Limelight0.8
 	"set cursorline!
 	set list!
 endfunction
@@ -239,14 +243,14 @@ function! s:goyo_leave()
 	"set list
 endfunction
 
-autocmd! User GoyoEnter
-"autocmd  User GoyoEnter nested setlocal list! cursorline!
-autocmd  User GoyoEnter nested setlocal list!
-
-
 "autocmd! User GoyoEnter
+"autocmd  User GoyoEnter nested setlocal list! cursorline!
+"autocmd  User GoyoEnter nested setlocal list!
+
+
+autocmd! User GoyoEnter
 autocmd! User GoyoLeave
-"autocmd  User GoyoEnter nested call <SID>goyo_enter()
+autocmd  User GoyoEnter nested call <SID>goyo_enter()
 autocmd  User GoyoLeave nested call <SID>goyo_leave()
 
 "----------------------------------------------
@@ -320,7 +324,7 @@ nnoremap T :call g:FindChar( 'T', "backward" )<CR>
 "----------------------------------------------
 "fix fullscreen issue in gvim, temporarily
 if has('gui_running')
-	set lines=999
+	autocmd VimEnter * set lines=999
 endif
 
 "----------------------------------------------
@@ -328,3 +332,9 @@ endif
 autocmd VimEnter * Limelight0.8
 "autocmd VimEnter * Goyo
 
+"----------------------------------------------
+"buftabline enable for gvim only
+if !has('gui_running')
+	let g:buftabline_show = 0
+	let g:buftabline_indicators = 1
+endif
