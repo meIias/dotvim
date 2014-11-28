@@ -83,10 +83,10 @@ set shiftwidth=4
 set smarttab
 set autoindent
 "----------------------------------------------
-"let g:seoul256_background = 233
-"colorscheme seoul256
+let g:seoul256_background = 233
+colorscheme seoul256
 
-colorscheme saturn
+"colorscheme saturn
 
 if has ('gui_running')
 	colorscheme vydark
@@ -142,7 +142,7 @@ let g:limelight_conceal_ctermfg = 240
 
 "----------------------------------------------
 "bufferline don't echo in command bar
-let g:bufferline_echo = 0
+let g:bufferline_echo = 1
 let g:bufferline_show_bufnr = 0
 let g:bufferline_active_buffer_left = ''
 let g:bufferline_active_buffer_right = ''
@@ -221,10 +221,6 @@ hi MatchParen guibg=NONE guifg=magenta gui=bold
 hi MatchParen cterm=bold ctermbg=none ctermfg=172
 
 "----------------------------------------------
-"semantic highlight toggle
-nnoremap <silent> <Leader>s :SemanticHighlightToggle<cr>
-
-"----------------------------------------------
 "javascript lint mapping
 map <silent> <leader>lj :JSHint<cr>
 
@@ -239,6 +235,7 @@ endfunction
 function! s:goyo_leave()
 	hi MatchParen cterm=bold ctermbg=none ctermfg=172
 	hi StatusLine ctermbg=NONE
+	hi MatchParen guibg=NONE guifg=magenta gui=bold
 	"set cursorline
 	"set list
 endfunction
@@ -256,16 +253,13 @@ autocmd  User GoyoLeave nested call <SID>goyo_leave()
 "----------------------------------------------
 "goyo mapping
 nnoremap <silent> <leader>z :Goyo<cr>
+let g:goyo_margin_top = 0
+let g:goyo_margin_bottom = 0
+let g:goyo_linenr = 0
 
 "----------------------------------------------
 "add javascript library syntax
 let g:used_javascript_libs = 'jquery,angularjs,requirejs'
-
-"----------------------------------------------
-"use the mouse to scroll horizontally
-if has('gui_running')
-	set nowrap
-endif
 
 "----------------------------------------------
 "longer history since it's not 1999 anymore
@@ -327,3 +321,5 @@ autocmd VimEnter * Limelight0.8
 "autocmd VimEnter * Goyo
 
 "----------------------------------------------
+"80 columns
+set textwidth=80
