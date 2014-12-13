@@ -10,6 +10,7 @@ set nocompatible
 "----------------------------------------------
 set list
 set listchars=tab:▸\ ,eol:¬,trail:·
+"set listchars=tab:┊\ ,eol:¬,trail:·
 
 "----------------------------------------------
 "remap : --> ; for commands
@@ -79,9 +80,10 @@ syntax on
 ""set smartindent
 set tabstop=4
 set shiftwidth=4
-"set expandtab
+set expandtab
 set smarttab
 set autoindent
+
 "----------------------------------------------
 let g:seoul256_background = 233
 colorscheme seoul256
@@ -97,7 +99,7 @@ endif
 "set cursorcolumn
 "hi CursorLine term=bold cterm=bold guibg=Grey40
 "hi CursorLine   cterm=NONE ctermbg=234 ctermfg=NONE
-hi StatusLine ctermbg=NONE
+"hi StatusLine ctermbg=NONE
 
 "----------------------------------------------
 " For nerd commenter
@@ -125,7 +127,7 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 
 "----------------------------------------------
 "set statusline=%F%m%r%h%w\%=%{fugitive#statusline()}\ %{tagbar#currenttag('[%s]','')}\ %y\ [Win:%{WindowNumber()}]\ [%{&fileencoding?&fileencoding:&encoding}]\ [L:\%l\ C:\%c\ A:\%b\ H:\x%B\ P:\%p%%]\ [%{strftime(\"%m.%d.%Y\//%I:%M%p\//Day:%j\")}]
-set statusline=%F%m%r%h%w\ %{fugitive#statusline()}%=%l,%c\ x%B
+set statusline=%F%m%r%h%w\ %{fugitive#statusline()}%=%{noscrollbar#statusline(20,'―','█')}\ \ \ %l,%c\ x%B
 
 "----------------------------------------------
 " map buffer switch to ctrlj ctrlk
@@ -208,6 +210,7 @@ endfunction
 "----------------------------------------------
 "vertical line spacing for gui
 "set linespace=2
+set transparency=0
 
 "----------------------------------------------
 "remove guivim scrollbars, toolbars
@@ -234,7 +237,7 @@ endfunction
 
 function! s:goyo_leave()
 	hi MatchParen cterm=bold ctermbg=none ctermfg=172
-	hi StatusLine ctermbg=NONE
+	"hi StatusLine ctermbg=NONE
 	hi MatchParen guibg=NONE guifg=magenta gui=bold
 	"set cursorline
 	"set list
@@ -322,4 +325,9 @@ autocmd VimEnter * Limelight0.8
 
 "----------------------------------------------
 "80 columns
-set textwidth=80
+"set textwidth=80
+
+"----------------------------------------------
+let g:indentLine_char = '┊'
+let g:indentLine_faster = 1
+let g:indentLine_color_term = 236

@@ -82,3 +82,11 @@
 	path = bundle/ShowMotion
 	url = https://github.com/boucherm/ShowMotion.git
 
+[submodule "bundle/intdentLine"]
+	path = bundle/indentLine
+	url = https://github.com/Yggdroot/indentLine.git
+
+[submodule "bundle/vim-noscrollbar"]
+	path = bundle/vim-noscrollbar
+	url = https://github.com/gcavallanti/vim-noscrollbar.git
+
