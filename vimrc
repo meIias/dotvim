@@ -238,6 +238,7 @@ endfunction
 function! s:goyo_leave()
 	hi MatchParen cterm=bold ctermbg=none ctermfg=172
 	"hi StatusLine ctermbg=NONE
+    hi LineNr ctermbg=233 ctermfg=235
 	hi MatchParen guibg=NONE guifg=magenta gui=bold
 	"set cursorline
 	"set list
@@ -331,3 +332,8 @@ autocmd VimEnter * Limelight0.8
 let g:indentLine_char = '┊'
 let g:indentLine_faster = 1
 let g:indentLine_color_term = 236
+
+"----------------------------------------------
+"no line number background
+hi LineNr ctermbg=233 ctermfg=235
+
