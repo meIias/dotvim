@@ -78,8 +78,8 @@ syntax on
 
 "----------------------------------------------
 ""set smartindent
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
 set smarttab
 set autoindent
@@ -87,11 +87,12 @@ set autoindent
 "----------------------------------------------
 let g:seoul256_background = 233
 colorscheme seoul256
-
+"colorscheme spacegray
 "colorscheme saturn
 
 if has ('gui_running')
-	colorscheme vydark
+    colorscheme vydark
+   " colorscheme molokai
 endif
 
 "----------------------------------------------
@@ -126,8 +127,7 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
 "----------------------------------------------
-"set statusline=%F%m%r%h%w\%=%{fugitive#statusline()}\ %{tagbar#currenttag('[%s]','')}\ %y\ [Win:%{WindowNumber()}]\ [%{&fileencoding?&fileencoding:&encoding}]\ [L:\%l\ C:\%c\ A:\%b\ H:\x%B\ P:\%p%%]\ [%{strftime(\"%m.%d.%Y\//%I:%M%p\//Day:%j\")}]
-set statusline=%F%m%r%h%w\ %{fugitive#statusline()}%=%{noscrollbar#statusline(20,'―','█')}\ \ \ %l,%c\ x%B
+set statusline=%F%m%r%h%w\ %{fugitive#statusline()}%=%l/%L,%c\ 0x%04B
 
 "----------------------------------------------
 " map buffer switch to ctrlj ctrlk
@@ -177,7 +177,8 @@ map <silent> <leader>lt :Limelight!!0.8 <cr>
  map <silent> <leader>r :NERDTreeFind<cr>
 
 "----------------------------------------------
-" use :BD (caps) to close a buffer but leave the window open(for nerdtree w/mult. files).
+" use :BD (caps) to close a buffer but leave the window
+" open(for nerdtree w/mult. files).
 
 "----------------------------------------------
 "map tagbar to ,tg to open/close it
@@ -321,19 +322,27 @@ nnoremap T :call g:FindChar( 'T', "backward" )<CR>
 
 "----------------------------------------------
 "limelight on enter b/c i like it a lot
-autocmd VimEnter * Limelight0.8
+"autocmd VimEnter * Limelight0.8
 "autocmd VimEnter * Goyo
 
 "----------------------------------------------
 "80 columns
-"set textwidth=80
+set textwidth=80
 
 "----------------------------------------------
 let g:indentLine_char = '┊'
-let g:indentLine_faster = 1
 let g:indentLine_color_term = 236
+let g:indentLine_showFirstIndentLevel = 1
+let g:indentLine_indentLevel = 15
+let g:indentLine_leadingSpaceEnabled = 1
+let g:indentLine_leadingSpaceChar = '·'
+
+"----------------------------------------------
 
 "----------------------------------------------
 "no line number background
 hi LineNr ctermbg=233 ctermfg=235
 
+"----------------------------------------------
+" paste
+set nopaste

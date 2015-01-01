@@ -15,6 +15,7 @@ endif
 let g:colors_name="vydark"
 
 
+hi Directory     guifg=#99bbcc
 hi Normal        guifg=#bbbbbb  guibg=#282828
 hi Title         guifg=white
 hi Cursor        guibg=#ffffff
