@@ -90,6 +90,6 @@
 	path = bundle/vim-noscrollbar
 	url = https://github.com/gcavallanti/vim-noscrollbar.git
 
-[submodule "bundle/--force"]
-	path = bundle/--force
-	url = https://github.com/ap/vim-buftabline.git
+[submodule "bundle/vim-jade"]
+	path = bundle/vim-jade
+	url = https://github.com/digitaltoad/vim-jade.git
