@@ -287,6 +287,7 @@ set hlsearch
 "----------------------------------------------
 "no swp file
 set noswapfile
+set nobackup
 
 "----------------------------------------------
 "no message when opening vim
@@ -322,7 +323,7 @@ nnoremap T :call g:FindChar( 'T', "backward" )<CR>
 
 "----------------------------------------------
 "limelight on enter b/c i like it a lot
-"autocmd VimEnter * Limelight0.8
+autocmd VimEnter * Limelight0.8
 "autocmd VimEnter * Goyo
 
 "----------------------------------------------
@@ -338,7 +339,8 @@ let g:indentLine_leadingSpaceEnabled = 1
 let g:indentLine_leadingSpaceChar = '·'
 
 "----------------------------------------------
-
+set updatetime=120
+set lazyredraw
 "----------------------------------------------
 "no line number background
 hi LineNr ctermbg=233 ctermfg=235
