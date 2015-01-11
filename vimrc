@@ -323,7 +323,7 @@ nnoremap T :call g:FindChar( 'T', "backward" )<CR>
 
 "----------------------------------------------
 "limelight on enter b/c i like it a lot
-autocmd VimEnter * Limelight0.8
+"autocmd VimEnter * Limelight0.8
 "autocmd VimEnter * Goyo
 
 "----------------------------------------------
@@ -339,8 +339,10 @@ let g:indentLine_leadingSpaceEnabled = 1
 let g:indentLine_leadingSpaceChar = '·'
 
 "----------------------------------------------
-set updatetime=120
-set lazyredraw
+"set updatetime=120
+"set lazyredraw
+set clipboard=unnamed
+
 "----------------------------------------------
 "no line number background
 hi LineNr ctermbg=233 ctermfg=235
