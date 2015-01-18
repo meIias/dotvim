@@ -93,3 +93,11 @@
 [submodule "bundle/vim-jade"]
 	path = bundle/vim-jade
 	url = https://github.com/digitaltoad/vim-jade.git
+
+[submodule "bundle/lightline.vim"]
+	path = bundle/lightline.vim
+  url = https://github.com/itchyny/lightline.vim.git
+
+[submodule "bundle/vim-markdown"]
+	path = bundle/vim-markdown
+	url = https://github.com/plasticboy/vim-markdown.git
