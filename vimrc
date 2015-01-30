@@ -359,3 +359,7 @@ hi LineNr ctermbg=233 ctermfg=239
 set nopaste
 
 "----------------------------------------------
+"
+let g:brightest#highlight = {
+  \ "group": "BrightestUnderline",
+  \}
