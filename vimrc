@@ -1,7 +1,45 @@
 "	@github.com/meiias's .vimrc
 "		-- always growing, always learning --
 
-execute pathogen#infect()
+let g:plug_timeout=1000
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !mkdir -p ~/.vim/autoload
+  silent !curl -fLo ~/.vim/autoload/plug.vim
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall
+endif
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'osyo-manga/vim-brightest'
+Plug 'boucherm/ShowMotion'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --omnisharp-completer' }
+Plug 'kien/ctrlp.vim'
+Plug 'mattn/emmet-vim'
+Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'jaxbot/semantic-highlight.vim'
+Plug 'meIias/seoul256.vim'
+Plug 'majutsushi/tagbar'
+Plug 'marijnh/tern_for_vim'
+Plug 'tomtom/tlib_vim'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'bling/vim-bufferline'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'kana/vim-smartinput'
+Plug 'garbas/vim-snipmate'
+Plug 'honza/vim-snippets'
+Plug 'Shutnik/jshint2.vim'
+Plug 'Yggdroot/indentLine'
+Plug 'gcavallanti/vim-noscrollbar'
+Plug 'digitaltoad/vim-jade'
+Plug 'itchyny/lightline.vim'
+Plug 'plasticboy/vim-markdown'
+
+call plug#end()
 
 "----------------------------------------------
 "no compatibility w/ vi
@@ -33,14 +71,8 @@ nnoremap <Leader>D :let NERDTreeQuitOnOpen = 0<bar>NERDTreeToggle<CR>
 "----------------------------------------------
 "remove help text at top of nerdtree window
 let NERDTreeMinimalUI = 1
-
-"----------------------------------------------
 "remove help at top of tagbar window
 let g:tagbar_compact = 1
-
-"----------------------------------------------
-"max width, horizontal on gvim
-set fuopt=maxvert,maxhorz
 
 "----------------------------------------------
 "iterm scrolling
@@ -54,14 +86,6 @@ let mapleader=","
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 
 "----------------------------------------------
-" Do not display "Pattern not found" messages during YouCompleteMe completion
-" Patch: https://groups.google.com/forum/#!topic/vim_dev/WeBBjkXE8H8
-"try
-"  set shortmess+=c
-"  catch /E539: Illegal character/
-"endtry
-
-"----------------------------------------------
 "font
 set guifont=M+\ 1mn\ medium:h10
 
@@ -71,13 +95,9 @@ if !has("gui_running")
 	set t_Co=256
 endif
 
-
 "----------------------------------------------
 set number
 syntax on
-
-"----------------------------------------------
-""set smartindent
 set tabstop=2
 set shiftwidth=2
 set expandtab
@@ -132,18 +152,11 @@ map <C-L> :tabn<CR>
 map <C-H> :tabp<CR>
 
 "----------------------------------------------
-" for limelight.vim
-" Color name (:help cterm-colors) or ANSI code
-" let g:limelight_conceal_ctermfg = 'gray'
-" let g:limelight_conceal_ctermfg = 240
-
-"----------------------------------------------
 "bufferline don't echo in command bar
 let g:bufferline_echo = 1
 let g:bufferline_show_bufnr = 0
 let g:bufferline_active_buffer_left = ''
 let g:bufferline_active_buffer_right = ''
-
 
 "----------------------------------------------
 "snipmate triggers, can't be tab b/c of ycm
@@ -153,14 +166,14 @@ smap <C-J> <Plug>snipMateNextOrTrigger
 "----------------------------------------------
 "error symbols
 if !has('gui_running')
-	" remove the highlighting for the gutter signs
-	hi clear YcmErrorSign
-	hi clear YcmWarningSign
-	let g:syntastic_error_symbol = '💥'
-	let g:syntastic_warning_symbol = '👉'
+  " remove the highlighting for the gutter signs
+  hi clear YcmErrorSign
+  hi clear YcmWarningSign
+  let g:syntastic_error_symbol = '💥'
+  let g:syntastic_warning_symbol = '👉'
 else
-	let g:syntastic_warning_symbol = ':('
-	let g:syntastic_error_symbol = ':('
+  let g:syntastic_warning_symbol = ':('
+  let g:syntastic_error_symbol = ':('
 endif
 
 "----------------------------------------------
@@ -170,10 +183,6 @@ map <silent> <leader>lt :Limelight!!0.8 <cr>
 "----------------------------------------------
 "view current buffer in nerdtree
  map <silent> <leader>r :NERDTreeFind<cr>
-
-"----------------------------------------------
-" use :BD (caps) to close a buffer but leave the window
-" open(for nerdtree w/mult. files).
 
 "----------------------------------------------
 "map tagbar to ,tg to open/close it
@@ -204,8 +213,11 @@ function! WindowNumber()
 endfunction
 
 "----------------------------------------------
-set transparency=0
 let g:vim_markdown_folding_disabled=1
+
+"----------------------------------------------
+"semantic highlight
+map <silent> <leader>s :SemanticHighlightToggle<cr>
 
 "----------------------------------------------
 "remove guivim scrollbars, toolbars
@@ -225,25 +237,16 @@ map <silent> <leader>lj :JSHint<cr>
 "----------------------------------------------
 "remove cursorline in distraction free mode
 function! s:goyo_enter()
-	"Limelight0.8
-	"set cursorline!
-	set list!
+  set list!
 endfunction
 
 function! s:goyo_leave()
-	hi MatchParen cterm=bold ctermbg=none ctermfg=172
-	hi StatusLine ctermbg=233 ctermfg=233
+  hi MatchParen cterm=bold ctermbg=none ctermfg=172
+  hi StatusLine ctermbg=233 ctermfg=233
   hi LineNr ctermbg=233 ctermfg=239
-	hi MatchParen guibg=NONE guifg=magenta gui=bold
+  hi MatchParen guibg=NONE guifg=magenta gui=bold
   hi CursorLine ctermbg=233
-	"set cursorline
-	"set list
 endfunction
-
-"autocmd! User GoyoEnter
-"autocmd  User GoyoEnter nested setlocal list! cursorline!
-"autocmd  User GoyoEnter nested setlocal list!
-
 
 autocmd! User GoyoEnter
 autocmd! User GoyoLeave
@@ -326,6 +329,7 @@ nnoremap T :call g:FindChar( 'T', "backward" )<CR>
 set textwidth=80
 
 "----------------------------------------------
+let g:indentLine_enabled = 0
 let g:indentLine_char = '┊'
 let g:indentLine_color_term = 239
 let g:indentLine_showFirstIndentLevel = 1
@@ -334,8 +338,6 @@ let g:indentLine_leadingSpaceEnabled = 1
 let g:indentLine_leadingSpaceChar = '·'
 
 "----------------------------------------------
-"set updatetime=120
-"set lazyredraw
 set clipboard=unnamed
 
 "----------------------------------------------
@@ -476,3 +478,6 @@ endfunction
 let g:unite_force_overwrite_statusline = 0
 let g:vimfiler_force_overwrite_statusline = 0
 let g:vimshell_force_overwrite_statusline = 0
+
+"--------------------------------------------------
+
