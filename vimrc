@@ -151,8 +151,8 @@ set statusline+=%=
 set statusline+=\ %{noscrollbar#statusline(30,'―','█')}
 set statusline+=\ \ \ [win:%{WindowNumber()}]
 set statusline+=\ %y
-set statusline+=\ %l
-set statusline+=/%L,%c\ 0x%04B
+set statusline+=\ %l/%L
+set statusline+=,%c\ 0x%04B
 
 
 "----------------------------------------------
