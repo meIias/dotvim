@@ -38,6 +38,11 @@ Plug 'gcavallanti/vim-noscrollbar'
 Plug 'digitaltoad/vim-jade'
 Plug 'itchyny/lightline.vim'
 Plug 'plasticboy/vim-markdown'
+Plug 'junegunn/limelight.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'mrtazz/DoxygenToolkit.vim'
+Plug 'vim-scripts/a.vim'
+Plug 'vim-scripts/bufkill.vim'
 
 call plug#end()
 
@@ -107,10 +112,6 @@ set autoindent
 "----------------------------------------------
 let g:seoul256_background = 233
 colorscheme seoul256
-
-if has ('gui_running')
-    colorscheme vydark
-endif
 
 "----------------------------------------------
 set cursorline
