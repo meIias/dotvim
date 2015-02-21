@@ -319,19 +319,33 @@ set hidden
 
 "----------------------------------------------
 "showmotion commands
-"Show motion for words:
-nnoremap <silent> w w:call g:Highw()<CR>:call g:HighW()<CR>
-nnoremap <silent> W W:call g:Highw()<CR>:call g:HighW()<CR>
-nnoremap <silent> b b:call g:Highb()<CR>:call g:HighB()<CR>
-nnoremap <silent> B B:call g:Highb()<CR>:call g:HighB()<CR>
-nnoremap <silent> e e:call g:Highe()<CR>:call g:HighE()<CR>
-nnoremap <silent> E E:call g:Highe()<CR>:call g:HighE()<CR>
 
-""Show motion for chars:
-nnoremap f :call g:FindChar( 'f', "forward" )<CR>
-nnoremap t :call g:FindChar( 't', "forward" )<CR>
-nnoremap F :call g:FindChar( 'F', "backward" )<CR>
-nnoremap T :call g:FindChar( 'T', "backward" )<CR>
+hi SM_SmallMotionGroup cterm=italic ctermbg=53 gui=italic guibg=#5f005f
+hi SM_BigMotionGroup cterm=italic,bold ctermbg=54 gui=italic,bold guibg=#5f0087
+hi SM_CharSearchGroup cterm=italic,bold ctermbg=4 gui=italic,bold guibg=#3f6691
+
+"*** Highlights both big and small motions
+nmap w <Plug>(show-motion-both-w)
+nmap W <Plug>(show-motion-both-W)
+nmap b <Plug>(show-motion-both-b)
+nmap B <Plug>(show-motion-both-B)
+nmap e <Plug>(show-motion-both-e)
+nmap E <Plug>(show-motion-both-E)
+
+"*** Only highlights motions corresponding to the one you typed
+nmap w <Plug>(show-motion-w)
+nmap W <Plug>(show-motion-W)
+nmap b <Plug>(show-motion-b)
+nmap B <Plug>(show-motion-B)
+nmap e <Plug>(show-motion-e)
+nmap E <Plug>(show-motion-E)
+
+"Show motion for chars:
+nmap f <Plug>(show-motion-f)
+nmap t <Plug>(show-motion-t)
+nmap F <Plug>(show-motion-F)
+nmap T <Plug>(show-motion-T)
+nmap , <Plug>(show-motion-,)
 
 "----------------------------------------------
 "limelight on enter b/c i like it a lot
