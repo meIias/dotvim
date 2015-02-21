@@ -11,7 +11,9 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'bling/vim-airline'
 Plug 'osyo-manga/vim-brightest'
+Plug 'vim-scripts/noerrmsg.vim'
 Plug 'boucherm/ShowMotion'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --omnisharp-completer' }
 Plug 'kien/ctrlp.vim'
@@ -102,8 +104,8 @@ endif
 "----------------------------------------------
 set number
 syntax on
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 set expandtab
 set smarttab
 set autoindent
@@ -127,6 +129,7 @@ filetype indent on
 "----------------------------------------------
 " add a status line
 set laststatus=2
+hi StatusLine ctermbg=233 ctermfg=233
 
 "----------------------------------------------
 " Remove annoying 'enter or type command..' msg
@@ -256,6 +259,7 @@ function! s:goyo_leave()
   hi LineNr ctermbg=233 ctermfg=239
   hi MatchParen guibg=NONE guifg=magenta gui=bold
   hi CursorLine ctermbg=233
+  hi StatusLine ctermbg=233 ctermfg=233
 endfunction
 
 autocmd! User GoyoEnter
@@ -337,9 +341,10 @@ nnoremap T :call g:FindChar( 'T', "backward" )<CR>
 "----------------------------------------------
 "80 columns
 set textwidth=80
+set colorcolumn=80
 
 "----------------------------------------------
-let g:indentLine_enabled = 0
+let g:indentLine_enabled = 1
 let g:indentLine_char = '┊'
 let g:indentLine_color_term = 239
 let g:indentLine_showFirstIndentLevel = 1
@@ -363,3 +368,12 @@ set nopaste
 let g:brightest#highlight = {
   \ "group": "BrightestUnderline",
   \}
+
+"---------------------------------------------
+"airline settings
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+let g:airline_theme='wombat'
+let g:airline_left_alt_sep=''
+let g:airline_right_alt_sep=''
+
