@@ -11,6 +11,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'Lokaltog/vim-easymotion'
 Plug 'deris/vim-shot-f'
 Plug 'wesQ3/vim-windowswap'
 Plug 'bling/vim-airline'
