@@ -11,6 +11,8 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'deris/vim-shot-f'
+Plug 'wesQ3/vim-windowswap'
 Plug 'bling/vim-airline'
 Plug 'osyo-manga/vim-brightest'
 Plug 'vim-scripts/noerrmsg.vim'
@@ -160,8 +162,8 @@ set statusline+=,%c\ 0x%04B
 
 "----------------------------------------------
 " map buffer switch to ctrlj ctrlk
-map <C-J> :bnext<CR>
-map <C-K> :bprev<CR>
+map <C-K> :bnext<CR>
+map <C-J> :bprev<CR>
 map <C-L> :tabn<CR>
 map <C-H> :tabp<CR>
 
