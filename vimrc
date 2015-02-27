@@ -119,7 +119,7 @@ colorscheme seoul256
 
 "----------------------------------------------
 set cursorline
-hi CursorLine term=bold cterm=bold ctermbg=233
+hi CursorLine term=bold cterm=bold ctermbg=233 guibg=bg gui=bold
 
 "----------------------------------------------
 " For nerd commenter
@@ -132,7 +132,7 @@ filetype indent on
 "----------------------------------------------
 " add a status line
 set laststatus=2
-hi StatusLine ctermbg=233 ctermfg=233
+hi StatusLine ctermbg=233 ctermfg=233 guibg=#000000 guifg=#000000
 
 "----------------------------------------------
 " Remove annoying 'enter or type command..' msg
@@ -262,7 +262,8 @@ function! s:goyo_leave()
   hi LineNr ctermbg=233 ctermfg=239
   hi MatchParen guibg=NONE guifg=magenta gui=bold
   hi CursorLine ctermbg=233
-  hi StatusLine ctermbg=233 ctermfg=233
+  hi StatusLine ctermbg=233 ctermfg=233 guibg=#000000 guifg=#000000
+  hi VertSplit guibg=#000000 guifg=#000000
 endfunction
 
 autocmd! User GoyoEnter
@@ -374,7 +375,9 @@ set clipboard=unnamed
 
 "----------------------------------------------
 "no line number background
-hi LineNr ctermbg=233 ctermfg=239
+"hi LineNr ctermbg=233 ctermfg=239
+"vertical split bar for tabs
+hi VertSplit guibg=#000000 guifg=#000000
 
 "----------------------------------------------
 " paste
