@@ -259,9 +259,9 @@ endfunction
 
 function! s:goyo_leave()
   hi MatchParen cterm=bold ctermbg=none ctermfg=172
-  hi LineNr ctermbg=233 ctermfg=239
+  hi LineNr ctermbg=233 ctermfg=239 guibg=bg guifg=#4e4e4e
   hi MatchParen guibg=NONE guifg=magenta gui=bold
-  hi CursorLine ctermbg=233
+  hi CursorLine term=bold cterm=bold ctermbg=233 guibg=bg gui=bold
   hi StatusLine ctermbg=233 ctermfg=233 guibg=#000000 guifg=#000000
   hi VertSplit guibg=#000000 guifg=#000000
 endfunction
@@ -375,7 +375,7 @@ set clipboard=unnamed
 
 "----------------------------------------------
 "no line number background
-"hi LineNr ctermbg=233 ctermfg=239
+hi LineNr ctermbg=233 ctermfg=239 guibg=bg guifg=#4e4e4e
 "vertical split bar for tabs
 hi VertSplit guibg=#000000 guifg=#000000
 
