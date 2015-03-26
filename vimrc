@@ -1,5 +1,5 @@
-"	@github.com/meiias's .vimrc
-"		-- always growing, always learning --
+" -- @github.com/meiias's vimrc -- "
+"----------------------------------------------
 
 let g:plug_timeout=1000
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -18,7 +18,9 @@ Plug 'bling/vim-airline'
 Plug 'osyo-manga/vim-brightest'
 Plug 'vim-scripts/noerrmsg.vim'
 Plug 'boucherm/ShowMotion'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --omnisharp-completer' }
+Plug 'Valloric/YouCompleteMe', {
+    \ 'do': './install.sh --clang-completer --omnisharp-completer'
+    \ }
 Plug 'kien/ctrlp.vim'
 Plug 'mattn/emmet-vim'
 Plug 'othree/javascript-libraries-syntax.vim'
@@ -397,3 +399,11 @@ let g:airline_theme='wombat'
 let g:airline_left_alt_sep=''
 let g:airline_right_alt_sep=''
 
+"--------------------------------------------
+"Persistent Undo
+if exists("&undodir")
+    set undofile
+    let &undodir=&directory
+    set undolevels=500
+    set undoreload=500
+endif
