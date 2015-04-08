@@ -75,7 +75,7 @@ nore \ ;
 
 "----------------------------------------------
 let g:ycm_path_to_python_interpreter = '/usr/bin/python'
-if has('macunix')
+if !has('macunix')
     let g:neocomplete#enable_at_startup = 1
 endif
 
