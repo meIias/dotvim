@@ -18,9 +18,16 @@ Plug 'bling/vim-airline'
 Plug 'osyo-manga/vim-brightest'
 Plug 'vim-scripts/noerrmsg.vim'
 Plug 'boucherm/ShowMotion'
-Plug 'Valloric/YouCompleteMe', {
-    \ 'do': './install.sh --clang-completer --omnisharp-completer'
-    \ }
+
+" when running remotely, use neocomplete since it's lightweight
+if has('macunix')
+    Plug 'Valloric/YouCompleteMe', {
+        \ 'do': './install.sh --clang-completer --omnisharp-completer'
+        \ }
+else
+    Plug 'Shougo/neocomplete.vim'
+endif
+
 Plug 'kien/ctrlp.vim'
 Plug 'mattn/emmet-vim'
 Plug 'othree/javascript-libraries-syntax.vim'
@@ -68,6 +75,9 @@ nore \ ;
 
 "----------------------------------------------
 let g:ycm_path_to_python_interpreter = '/usr/bin/python'
+if has('macunix')
+    let g:neocomplete#enable_at_startup = 1
+endif
 
 "----------------------------------------------
 scriptencoding utf-8
@@ -379,7 +389,7 @@ set clipboard=unnamed
 "no line number background
 hi LineNr ctermbg=233 ctermfg=239 guibg=bg guifg=#4e4e4e
 "vertical split bar for tabs
-hi VertSplit guibg=#000000 guifg=#000000
+hi VertSplit ctermbg=234 ctermfg=234 guibg=#000000 guifg=#000000
 
 "----------------------------------------------
 " paste
