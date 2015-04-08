@@ -25,7 +25,7 @@ if has('macunix')
         \ 'do': './install.sh --clang-completer --omnisharp-completer'
         \ }
 else
-    Plug 'ajh17/VimCompletesMe'
+    Plug 'Shougo/neocomplete.vim'
 endif
 
 Plug 'kien/ctrlp.vim'
@@ -75,9 +75,9 @@ nore \ ;
 
 "----------------------------------------------
 let g:ycm_path_to_python_interpreter = '/usr/bin/python'
-"if has('macunix')
-"    let g:neocomplete#enable_at_startup = 1
-"endif
+if has('macunix')
+    let g:neocomplete#enable_at_startup = 1
+endif
 
 "----------------------------------------------
 scriptencoding utf-8
