@@ -20,9 +20,11 @@ function! BuildColor_Coded(info)
     endif
 endfunction
 
-Plug 'jeaye/color_coded', {
-    \ 'do': function('BuildColor_Coded')
-    \ }
+if has("gui_running")
+    Plug 'jeaye/color_coded', {
+        \ 'do': function('BuildColor_Coded')
+        \ }
+endif
 
 Plug 'Lokaltog/vim-easymotion'
 Plug 'deris/vim-shot-f'
