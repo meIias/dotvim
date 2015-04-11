@@ -3,13 +3,26 @@
 
 let g:plug_timeout=1000
 if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !mkdir -p ~/.vim/autoload
-  silent !curl -fLo ~/.vim/autoload/plug.vim
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall
+    silent !mkdir -p ~/.vim/autoload
+    silent !curl -fLo ~/.vim/autoload/plug.vim
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall
 endif
 
 call plug#begin('~/.vim/plugged')
+
+function! BuildColor_Coded(info)
+    if a:info.status != 'installed'
+        !cd ~/.vim/plugged/color_coded
+        !mkdir build && cd build
+        !cmake ..
+        ! make && make install
+    endif
+endfunction
+
+Plug 'jeaye/color_coded', {
+    \ 'do': function('BuildColor_Coded')
+    \ }
 
 Plug 'Lokaltog/vim-easymotion'
 Plug 'deris/vim-shot-f'
@@ -25,9 +38,10 @@ if has('macunix')
         \ 'do': './install.sh --clang-completer --omnisharp-completer'
         \ }
 else
-    Plug 'Shougo/neocomplete.vim'
+    Plug 'vim-scripts/AutoComplPop'
 endif
 
+Plug 'vim-scripts/vydark'
 Plug 'kien/ctrlp.vim'
 Plug 'mattn/emmet-vim'
 Plug 'othree/javascript-libraries-syntax.vim'
@@ -66,7 +80,6 @@ set nocompatible
 "----------------------------------------------
 set list
 set listchars=tab:▸\ ,eol:¬,trail:·
-"set listchars=tab:┊\ ,eol:¬,trail:·
 
 "----------------------------------------------
 "remap : --> ; for commands
@@ -75,9 +88,6 @@ nore \ ;
 
 "----------------------------------------------
 let g:ycm_path_to_python_interpreter = '/usr/bin/python'
-if !has('macunix')
-    let g:neocomplete#enable_at_startup = 1
-endif
 
 "----------------------------------------------
 scriptencoding utf-8
@@ -172,7 +182,6 @@ set statusline+=\ %y
 set statusline+=\ %l/%L
 set statusline+=,%c\ 0x%04B
 
-
 "----------------------------------------------
 " map buffer switch to ctrlj ctrlk
 map <C-K> :bnext<CR>
@@ -232,13 +241,13 @@ let g:tagbar_width = 38
 
 let i = 1
 while i <= 9
-	execute 'nnoremap <Leader>' . i . ' :' . i . 'wincmd w<CR>'
-	let i = i + 1
+    execute 'nnoremap <Leader>' . i . ' :' . i . 'wincmd w<CR>'
+    let i = i + 1
 endwhile
 
 function! WindowNumber()
-	let str=tabpagewinnr(tabpagenr())
-	return str
+    let str=tabpagewinnr(tabpagenr())
+    return str
 endfunction
 
 "----------------------------------------------
@@ -266,16 +275,16 @@ map <silent> <leader>lj :JSHint<cr>
 "----------------------------------------------
 "remove cursorline in distraction free mode
 function! s:goyo_enter()
-  set list!
+    set list!
 endfunction
 
 function! s:goyo_leave()
-  hi MatchParen cterm=bold ctermbg=none ctermfg=172
-  hi LineNr ctermbg=233 ctermfg=239 guibg=bg guifg=#4e4e4e
-  hi MatchParen guibg=NONE guifg=magenta gui=bold
-  hi CursorLine term=bold cterm=bold ctermbg=233 guibg=bg gui=bold
-  hi StatusLine ctermbg=233 ctermfg=233 guibg=#000000 guifg=#000000
-  hi VertSplit guibg=#000000 guifg=#000000
+    hi MatchParen cterm=bold ctermbg=none ctermfg=172
+    hi LineNr ctermbg=233 ctermfg=239 guibg=bg guifg=#4e4e4e
+    hi MatchParen guibg=NONE guifg=magenta gui=bold
+    hi CursorLine term=bold cterm=bold ctermbg=233 guibg=bg gui=bold
+    hi StatusLine ctermbg=233 ctermfg=233 guibg=#000000 guifg=#000000
+    hi VertSplit guibg=#000000 guifg=#000000
 endfunction
 
 autocmd! User GoyoEnter
@@ -335,7 +344,6 @@ set hidden
 
 "----------------------------------------------
 "showmotion commands
-
 hi SM_SmallMotionGroup cterm=italic ctermbg=53 gui=italic guibg=#5f005f
 hi SM_BigMotionGroup cterm=italic,bold ctermbg=54 gui=italic,bold guibg=#5f0087
 hi SM_CharSearchGroup cterm=italic,bold ctermbg=4 gui=italic,bold guibg=#3f6691
@@ -398,8 +406,8 @@ set nopaste
 "----------------------------------------------
 "
 let g:brightest#highlight = {
-  \ "group": "BrightestUnderline",
-  \}
+    \ "group": "BrightestUnderline",
+    \}
 
 "---------------------------------------------
 "airline settings
