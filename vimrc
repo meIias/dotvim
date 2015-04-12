@@ -521,6 +521,10 @@ let g:airline_left_alt_sep=''
 let g:airline_right_alt_sep=''
 
 "--------------------------------------------
+" replace filetype in airline
+let g:airline_section_y = 'WIN: %{WindowNumber()}'
+
+"--------------------------------------------
 "Persistent Undo
 if exists("&undodir")
     set undofile
