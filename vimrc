@@ -224,7 +224,8 @@ colorscheme seoul256
 
 "----------------------------------------------
 " list chars colors
-hi NonText guibg=bg guifg=bg gui=NONE
+" hide list chars for now, can only see when cursor is over it
+hi NonText guibg=bg guifg=bg gui=NONE ctermfg=bg ctermbg=bg
 
 "----------------------------------------------
 " cursorline will match the bg
@@ -379,7 +380,7 @@ function! s:goyo_leave()
     hi StatusLine ctermbg=234 ctermfg=234 guibg=#242424 guifg=#242424
     hi StatusLineNC ctermbg=234 ctermfg=234 guibg=#242424 guifg=#242424
     hi VertSplit ctermbg=234 ctermfg=234 guibg=#262626 guifg=#262626
-    hi NonText guibg=bg guifg=bg gui=NONE
+    hi NonText guibg=bg guifg=bg gui=NONE ctermfg=bg ctermbg=bg
 endfunction
 
 autocmd! User GoyoEnter
