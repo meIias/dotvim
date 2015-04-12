@@ -223,6 +223,10 @@ let g:seoul256_background = 233
 colorscheme seoul256
 
 "----------------------------------------------
+" list chars colors
+hi NonText guibg=bg guifg=bg gui=NONE
+
+"----------------------------------------------
 " cursorline will match the bg
 set cursorline
 hi CursorLine term=bold cterm=bold ctermbg=233 guibg=bg gui=bold
@@ -238,7 +242,8 @@ filetype indent on
 "----------------------------------------------
 " add a status line, make it dark
 set laststatus=2
-hi StatusLine ctermbg=233 ctermfg=233 guibg=#000000 guifg=#000000
+hi StatusLine ctermbg=234 ctermfg=234 guibg=#242424 guifg=#242424
+hi StatusLineNC ctermbg=234 ctermfg=234 guibg=#242424 guifg=#242424
 
 "----------------------------------------------
 " Remove annoying 'enter or type command..' msg
@@ -371,8 +376,10 @@ function! s:goyo_leave()
     hi LineNr ctermbg=233 ctermfg=239 guibg=bg guifg=#4e4e4e
     hi MatchParen guibg=NONE guifg=magenta gui=bold
     hi CursorLine term=bold cterm=bold ctermbg=233 guibg=bg gui=bold
-    hi StatusLine ctermbg=233 ctermfg=233 guibg=#000000 guifg=#000000
-    hi VertSplit guibg=#000000 guifg=#000000
+    hi StatusLine ctermbg=234 ctermfg=234 guibg=#242424 guifg=#242424
+    hi StatusLineNC ctermbg=234 ctermfg=234 guibg=#242424 guifg=#242424
+    hi VertSplit ctermbg=234 ctermfg=234 guibg=#262626 guifg=#262626
+    hi NonText guibg=bg guifg=bg gui=NONE
 endfunction
 
 autocmd! User GoyoEnter
@@ -492,7 +499,7 @@ hi LineNr ctermbg=233 ctermfg=239 guibg=bg guifg=#4e4e4e
 
 "----------------------------------------------
 " vertical split bar for tabs
-hi VertSplit ctermbg=234 ctermfg=234 guibg=#000000 guifg=#000000
+hi VertSplit ctermbg=234 ctermfg=234 guibg=#242424 guifg=#242424
 
 "----------------------------------------------
 " paste mode default
