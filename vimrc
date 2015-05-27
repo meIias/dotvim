@@ -82,6 +82,9 @@ Plug 'jaxbot/semantic-highlight.vim'
 " my fork of the best colorscheme, written by junegunn
 Plug 'meIias/seoul256.vim'
 
+" best light colorscheme I've used in term vim
+Plug 'vim-scripts/saturn.vim'
+
 " tag outline viewer. ',tg' to open, shows fns, vars, classes, etc
 Plug 'majutsushi/tagbar'
 
@@ -478,7 +481,6 @@ nmap , <Plug>(show-motion-,)
 "----------------------------------------------
 " 80 columns
 set textwidth=80
-set colorcolumn=80
 
 "----------------------------------------------
 " indentline settings, include vertical bars and horizontal
