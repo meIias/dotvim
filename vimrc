@@ -481,6 +481,7 @@ nmap , <Plug>(show-motion-,)
 "----------------------------------------------
 " 80 columns
 "set textwidth=80
+set noundofile
 
 "----------------------------------------------
 " indentline settings, include vertical bars and horizontal
