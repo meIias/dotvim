@@ -481,7 +481,6 @@ nmap , <Plug>(show-motion-,)
 "----------------------------------------------
 " 80 columns
 "set textwidth=80
-set noundofile
 
 "----------------------------------------------
 " indentline settings, include vertical bars and horizontal
@@ -535,3 +534,5 @@ if exists("&undodir")
     set undolevels=500
     set undoreload=500
 endif
+
+set noundofile
