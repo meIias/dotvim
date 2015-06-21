@@ -26,14 +26,18 @@ function! BuildColor_Coded(info)
 endfunction
 
 " color-coded provides C/C++ semantic highlighting
-if has("gui_running")
-    Plug 'jeaye/color_coded', {
-        \ 'do': function('BuildColor_Coded')
-        \ }
-endif
+Plug 'jeaye/color_coded', {
+    \ 'do': function('BuildColor_Coded')
+    \ }
 
 " easymotion moves through a buffer by typing ',,w'
 Plug 'Lokaltog/vim-easymotion'
+
+" enhanced js syntax
+Plug 'jelera/vim-javascript-syntax'
+
+" auto js linting, don't want it for now
+" Plug 'hallettj/jslint.vim'
 
 " press 'f' to highlight all possible line movements
 Plug 'deris/vim-shot-f'
