@@ -26,9 +26,12 @@ function! BuildColor_Coded(info)
 endfunction
 
 " color-coded provides C/C++ semantic highlighting
-Plug 'jeaye/color_coded', {
-    \ 'do': function('BuildColor_Coded')
-    \ }
+"Plug 'jeaye/color_coded', {
+"    \ 'do': function('BuildColor_Coded')
+"    \ }
+
+" c++ additional syntax highlighting
+Plug 'octol/vim-cpp-enhanced-highlight'
 
 " easymotion moves through a buffer by typing ',,w'
 Plug 'Lokaltog/vim-easymotion'
@@ -49,7 +52,8 @@ Plug 'wesQ3/vim-windowswap'
 Plug 'bling/vim-airline'
 
 " underlines all occurances of a word
-Plug 'osyo-manga/vim-brightest'
+" !! not working right now, so commenting
+"Plug 'osyo-manga/vim-brightest'
 
 " hides messages associated with YCM, like 'not found'
 Plug 'vim-scripts/noerrmsg.vim'
@@ -58,15 +62,17 @@ Plug 'vim-scripts/noerrmsg.vim'
 Plug 'boucherm/ShowMotion'
 
 " when running remotely, can't use YCM since it's huge
-if has('macunix')
-    " best autocompletion plugin I have used
-    Plug 'Valloric/YouCompleteMe', {
-        \ 'do': './install.sh --clang-completer --omnisharp-completer'
-        \ }
-else
-    " shows completion menu, basic autocomplete
-    Plug 'vim-scripts/AutoComplPop'
-endif
+" autocompletion for c family languages and js, commenting build step
+Plug 'Valloric/YouCompleteMe'
+
+"if has('macunix')
+"    Plug 'Valloric/YouCompleteMe', {
+"        \ 'do': './install.sh --clang-completer --omnisharp-completer'
+"        \ }
+"else
+"    " shows completion menu, basic autocomplete
+"    Plug 'vim-scripts/AutoComplPop'
+"endif
 
 " lightweight and fast file finder
 Plug 'kien/ctrlp.vim'
@@ -238,6 +244,7 @@ hi NonText guibg=bg guifg=bg gui=NONE ctermfg=bg ctermbg=bg
 " cursorline will match the bg
 set cursorline
 hi CursorLine term=bold cterm=bold ctermbg=233 guibg=bg gui=bold
+hi CursorLineNR term=bold cterm=bold ctermbg=bg guibg=bg gui=bold
 
 "----------------------------------------------
 " For those plugins that need it to run
@@ -388,6 +395,7 @@ function! s:goyo_leave()
     hi StatusLineNC ctermbg=234 ctermfg=234 guibg=#242424 guifg=#242424
     hi VertSplit ctermbg=234 ctermfg=234 guibg=#262626 guifg=#262626
     hi NonText guibg=bg guifg=bg gui=NONE ctermfg=bg ctermbg=bg
+    hi CursorLineNR term=bold cterm=bold ctermbg=bg guibg=bg gui=bold
 endfunction
 
 autocmd! User GoyoEnter
