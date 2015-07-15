@@ -132,7 +132,7 @@ Plug 'honza/vim-snippets'
 Plug 'Shutnik/jshint2.vim'
 
 " provides vertical indentlines and horizontal lines
-Plug 'Yggdroot/indentLine'
+"Plug 'Yggdroot/indentLine'
 
 " file scrollbar for the statusline
 Plug 'gcavallanti/vim-noscrollbar'
