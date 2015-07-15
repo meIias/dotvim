@@ -403,6 +403,8 @@ autocmd! User GoyoLeave
 autocmd  User GoyoEnter nested call <SID>goyo_enter()
 autocmd  User GoyoLeave nested call <SID>goyo_leave()
 
+let g:goyo_width=130
+
 "----------------------------------------------
 " goyo mapping
 nnoremap <silent> <leader>z :Goyo<cr>
