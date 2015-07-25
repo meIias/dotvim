@@ -132,6 +132,7 @@ Plug 'honza/vim-snippets'
 Plug 'Shutnik/jshint2.vim'
 
 " provides vertical indentlines and horizontal lines
+"Plug 'nathanaelkane/vim-indent-guides'
 "Plug 'Yggdroot/indentLine'
 
 " file scrollbar for the statusline
@@ -224,8 +225,9 @@ endif
 " currently using spaces of length 4
 set number
 syntax on
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
 set expandtab
 set smarttab
 set autoindent
@@ -403,7 +405,7 @@ autocmd! User GoyoLeave
 autocmd  User GoyoEnter nested call <SID>goyo_enter()
 autocmd  User GoyoLeave nested call <SID>goyo_leave()
 
-let g:goyo_width=130
+let g:goyo_width=80
 
 "----------------------------------------------
 " goyo mapping
@@ -498,13 +500,8 @@ nmap , <Plug>(show-motion-,)
 
 "----------------------------------------------
 " indentline settings, include vertical bars and horizontal
-let g:indentLine_enabled = 1
-let g:indentLine_char = '┊'
-let g:indentLine_color_term = 239
-let g:indentLine_showFirstIndentLevel = 1
-let g:indentLine_indentLevel = 15
-let g:indentLine_leadingSpaceEnabled = 1
-let g:indentLine_leadingSpaceChar = '·'
+"let g:indent_guides_enable_on_vim_startup = 1
+"let g:indent_guides_guide_size = 1
 
 "----------------------------------------------
 " copy/paste from the system clipboard
