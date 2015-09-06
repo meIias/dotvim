@@ -49,9 +49,6 @@ Plug 'Lokaltog/vim-easymotion'
 " enhanced js syntax
 Plug 'jelera/vim-javascript-syntax'
 
-" auto-update ctags
-Plug 'xolox/vim-easytags'
-
 " press 'f' to highlight all possible line movements
 Plug 'deris/vim-shot-f'
 
