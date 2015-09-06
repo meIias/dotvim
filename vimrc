@@ -52,6 +52,9 @@ Plug 'jelera/vim-javascript-syntax'
 " press 'f' to highlight all possible line movements
 Plug 'deris/vim-shot-f'
 
+" auto update ctags on save
+Plug 'craigemery/vim-autotag'
+
 " press ',ww' in two buffers to swap them
 Plug 'wesQ3/vim-windowswap'
 
