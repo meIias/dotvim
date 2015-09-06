@@ -6,10 +6,10 @@ let g:plug_timeout=1000
 
 " install 'vim plug' to the autoload folder on fresh install
 if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !mkdir -p ~/.vim/autoload
-    silent !curl -fLo ~/.vim/autoload/plug.vim
+  silent !mkdir -p ~/.vim/autoload
+  silent !curl -fLo ~/.vim/autoload/plug.vim
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall
+  autocmd VimEnter * PlugInstall
 endif
 
 " install plugins to /plugged
@@ -17,18 +17,27 @@ call plug#begin('~/.vim/plugged')
 
 " commands required after installing color coded
 function! BuildColor_Coded(info)
-    if a:info.status != 'installed'
-        !cd ~/.vim/plugged/color_coded
-        !mkdir build && cd build
-        !cmake ..
-        !make && make install
-    endif
+  if a:info.status != 'installed'
+    !cd ~/.vim/plugged/color_coded
+    !mkdir build && cd build
+    !cmake ..
+    !make && make install
+  endif
 endfunction
 
 " color-coded provides C/C++ semantic highlighting
 "Plug 'jeaye/color_coded', {
 "    \ 'do': function('BuildColor_Coded')
 "    \ }
+
+" css syntax plugin
+Plug 'hail2u/vim-css3-syntax'
+
+" fixes some css syntax highlighting issues
+augroup VimCSS3Syntax
+  autocmd!
+  autocmd FileType css setlocal iskeyword+=-
+augroup END
 
 " c++ additional syntax highlighting
 Plug 'octol/vim-cpp-enhanced-highlight'
@@ -39,21 +48,15 @@ Plug 'Lokaltog/vim-easymotion'
 " enhanced js syntax
 Plug 'jelera/vim-javascript-syntax'
 
-" auto js linting, don't want it for now
-" Plug 'hallettj/jslint.vim'
-
 " press 'f' to highlight all possible line movements
 Plug 'deris/vim-shot-f'
 
 " press ',ww' in two buffers to swap them
 Plug 'wesQ3/vim-windowswap'
 
-" statusline plugin
-Plug 'bling/vim-airline'
-
 " underlines all occurances of a word
 " !! not working right now, so commenting
-"Plug 'osyo-manga/vim-brightest'
+Plug 'osyo-manga/vim-brightest'
 
 " hides messages associated with YCM, like 'not found'
 Plug 'vim-scripts/noerrmsg.vim'
@@ -131,15 +134,8 @@ Plug 'honza/vim-snippets'
 " javascript linting, ',lj' to lint
 Plug 'Shutnik/jshint2.vim'
 
-" provides vertical indentlines and horizontal lines
-"Plug 'nathanaelkane/vim-indent-guides'
-"Plug 'Yggdroot/indentLine'
-
 " file scrollbar for the statusline
 Plug 'gcavallanti/vim-noscrollbar'
-
-" jade syntax highlighting for vim
-Plug 'digitaltoad/vim-jade'
 
 " markdown syntax highlighting
 Plug 'plasticboy/vim-markdown'
@@ -217,7 +213,7 @@ set guifont=M+\ 1mn\ medium:h10
 "----------------------------------------------
 " Basic settings for colorscheme and general look
 if !has("gui_running")
-    set t_Co=256
+  set t_Co=256
 endif
 
 "----------------------------------------------
@@ -259,7 +255,7 @@ filetype indent on
 "----------------------------------------------
 " add a status line, make it dark
 set laststatus=2
-hi StatusLine ctermbg=234 ctermfg=234 guibg=#242424 guifg=#242424
+hi StatusLine ctermbg=241 ctermfg=234 guibg=#242424 guifg=#242424
 hi StatusLineNC ctermbg=234 ctermfg=234 guibg=#242424 guifg=#242424
 
 "----------------------------------------------
@@ -275,7 +271,7 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
 "----------------------------------------------
-" custom statusline, currently unused in favor of airline
+" custom statusline
 set statusline=%F
 set statusline+=%m
 set statusline+=%r
@@ -283,11 +279,12 @@ set statusline+=%h
 set statusline+=%w
 set statusline+=\ %{fugitive#statusline()}
 set statusline+=%=
-set statusline+=\ %{noscrollbar#statusline(30,'―','█')}
-set statusline+=\ \ \ [win:%{WindowNumber()}]
+set statusline+=\ %{noscrollbar#statusline(15,'―','█')}
+set statusline+=\ \ \ [win:\ %{WindowNumber()}]
 set statusline+=\ %y
-set statusline+=\ %l/%L
-set statusline+=,%c\ 0x%04B
+set statusline+=\ [line:\ %4l\ of\ %4L]
+set statusline+=\ [col:\ %3c]
+set statusline+=\ [hex:\ 0x%04B]
 
 "----------------------------------------------
 " map buffer switch to ctrlj ctrlk
@@ -311,15 +308,15 @@ smap <C-J> <Plug>snipMateNextOrTrigger
 "----------------------------------------------
 " error symbols
 if !has('gui_running')
-    " remove the highlighting for the gutter signs
-    " no emojis in guivim annoyingly
-    hi clear YcmErrorSign
-    hi clear YcmWarningSign
-    let g:syntastic_error_symbol = '💥'
-    let g:syntastic_warning_symbol = '👉'
+  " remove the highlighting for the gutter signs
+  " no emojis in guivim annoyingly
+  hi clear YcmErrorSign
+  hi clear YcmWarningSign
+  let g:syntastic_error_symbol = '💥'
+  let g:syntastic_warning_symbol = '👉'
 else
-    let g:syntastic_warning_symbol = ':('
-    let g:syntastic_error_symbol = ':('
+  let g:syntastic_warning_symbol = ':('
+  let g:syntastic_error_symbol = ':('
 endif
 
 "----------------------------------------------
@@ -348,14 +345,14 @@ let g:tagbar_width = 38
 " ,1-2-3-4-5 to change windows!
 let i = 1
 while i <= 9
-    execute 'nnoremap <Leader>' . i . ' :' . i . 'wincmd w<CR>'
-    let i = i + 1
+  execute 'nnoremap <Leader>' . i . ' :' . i . 'wincmd w<CR>'
+  let i = i + 1
 endwhile
 
 " call this fn in statusline to show which windownumber current
 function! WindowNumber()
-    let str=tabpagewinnr(tabpagenr())
-    return str
+  let str=tabpagewinnr(tabpagenr())
+  return str
 endfunction
 
 "----------------------------------------------
@@ -384,20 +381,20 @@ map <silent> <leader>lj :JSHint<cr>
 "----------------------------------------------
 " remove invisible chars in distraction free mode
 function! s:goyo_enter()
-    set list!
+  set list!
 endfunction
 
 function! s:goyo_leave()
-    " have to return a bunch of color settings after leaving goyo mode
-    hi MatchParen cterm=bold ctermbg=none ctermfg=172
-    hi LineNr ctermbg=233 ctermfg=239 guibg=bg guifg=#4e4e4e
-    hi MatchParen guibg=NONE guifg=magenta gui=bold
-    hi CursorLine term=bold cterm=bold ctermbg=233 guibg=bg gui=bold
-    hi StatusLine ctermbg=234 ctermfg=234 guibg=#242424 guifg=#242424
-    hi StatusLineNC ctermbg=234 ctermfg=234 guibg=#242424 guifg=#242424
-    hi VertSplit ctermbg=234 ctermfg=234 guibg=#262626 guifg=#262626
-    hi NonText guibg=bg guifg=bg gui=NONE ctermfg=bg ctermbg=bg
-    hi CursorLineNR term=bold cterm=bold ctermbg=bg guibg=bg gui=bold
+  " have to return a bunch of color settings after leaving goyo mode
+  hi StatusLine ctermbg=242 ctermfg=234 guibg=#242424 guifg=#242424
+  hi MatchParen cterm=bold ctermbg=none ctermfg=172
+  hi LineNr ctermbg=233 ctermfg=239 guibg=bg guifg=#4e4e4e
+  hi MatchParen guibg=NONE guifg=magenta gui=bold
+  hi CursorLine term=bold cterm=bold ctermbg=233 guibg=bg gui=bold
+  hi StatusLineNC ctermbg=234 ctermfg=234 guibg=#242424 guifg=#242424
+  hi VertSplit ctermbg=234 ctermfg=234 guibg=#262626 guifg=#262626
+  hi NonText guibg=bg guifg=bg gui=NONE ctermfg=bg ctermbg=bg
+  hi CursorLineNR term=bold cterm=bold ctermbg=bg guibg=bg gui=bold
 endfunction
 
 autocmd! User GoyoEnter
@@ -522,28 +519,16 @@ set nopaste
 "----------------------------------------------
 " underlines all occurances of a word in the buffer
 let g:brightest#highlight = {
-    \ "group": "BrightestUnderline",
-    \}
-
-"---------------------------------------------
-" airline settings, separators and theme
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:airline_theme='wombat'
-let g:airline_left_alt_sep=''
-let g:airline_right_alt_sep=''
-
-"--------------------------------------------
-" replace filetype in airline
-let g:airline_section_y = 'WIN: %{WindowNumber()}'
+      \ "group": "BrightestUnderline",
+      \}
 
 "--------------------------------------------
 "Persistent Undo
 if exists("&undodir")
-    set undofile
-    let &undodir=&directory
-    set undolevels=500
-    set undoreload=500
+  set undofile
+  let &undodir=&directory
+  set undolevels=500
+  set undoreload=500
 endif
 
 set noundofile
