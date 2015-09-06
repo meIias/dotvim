@@ -31,6 +31,7 @@ endfunction
 "    \ }
 
 " css syntax plugin
+" ctrl space to activate completion
 Plug 'hail2u/vim-css3-syntax'
 
 " fixes some css syntax highlighting issues
@@ -47,6 +48,9 @@ Plug 'Lokaltog/vim-easymotion'
 
 " enhanced js syntax
 Plug 'jelera/vim-javascript-syntax'
+
+" auto-update ctags
+Plug 'xolox/vim-easytags'
 
 " press 'f' to highlight all possible line movements
 Plug 'deris/vim-shot-f'
@@ -269,6 +273,10 @@ set completeopt-=preview
 let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
+
+"----------------------------------------------
+" YCM completion
+let g:ycm_min_num_of_chars_for_completion = 0
 
 "----------------------------------------------
 " custom statusline
