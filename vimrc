@@ -156,6 +156,10 @@ Plug 'vim-scripts/a.vim'
 " close buffer with :BD and still leave window open
 Plug 'vim-scripts/bufkill.vim'
 
+Plug 'vim-scripts/vydark'
+
+Plug 'Yggdroot/indentLine'
+
 call plug#end()
 
 "----------------------------------------------
@@ -166,6 +170,17 @@ set nocompatible
 " show invisible chars
 set list
 set listchars=tab:▸\ ,eol:¬,trail:·
+
+"----------------------------------------------
+let g:indentLine_enabled=0
+
+if has("gui_running")
+  let g:indentLine_enabled=0
+  let g:indentLine_char="┆"
+  let g:indentLine_showFirstIndentLevel=1
+  let g:indentLine_leadingSpaceEnabled=1
+  let g:indentLine_leadingSpaceChar="·"
+endif
 
 "----------------------------------------------
 "remap : to ; for commands
@@ -231,8 +246,12 @@ set autoindent
 
 "----------------------------------------------
 " best colorscheme I have seen
-let g:seoul256_background = 233
-colorscheme seoul256
+if has("gui_running")
+  colorscheme vydark
+else
+  let g:seoul256_background = 233
+  colorscheme seoul256
+endif
 
 "----------------------------------------------
 " list chars colors
@@ -256,8 +275,10 @@ filetype indent on
 "----------------------------------------------
 " add a status line, make it dark
 set laststatus=2
-hi StatusLine ctermbg=241 ctermfg=234 guibg=#242424 guifg=#242424
-hi StatusLineNC ctermbg=234 ctermfg=234 guibg=#242424 guifg=#242424
+if !has("gui_running")
+  hi StatusLine ctermbg=241 ctermfg=234 guibg=#242424 guifg=#242424
+  hi StatusLineNC ctermbg=234 ctermfg=234 guibg=#242424 guifg=#242424
+endif
 
 "----------------------------------------------
 " Remove annoying 'enter or type command..' msg
@@ -390,16 +411,18 @@ function! s:goyo_enter()
 endfunction
 
 function! s:goyo_leave()
-  " have to return a bunch of color settings after leaving goyo mode
-  hi StatusLine ctermbg=242 ctermfg=234 guibg=#242424 guifg=#242424
-  hi MatchParen cterm=bold ctermbg=none ctermfg=172
-  hi LineNr ctermbg=233 ctermfg=239 guibg=bg guifg=#4e4e4e
-  hi MatchParen guibg=NONE guifg=magenta gui=bold
-  hi CursorLine term=bold cterm=bold ctermbg=233 guibg=bg gui=bold
-  hi StatusLineNC ctermbg=234 ctermfg=234 guibg=#242424 guifg=#242424
-  hi VertSplit ctermbg=234 ctermfg=234 guibg=#262626 guifg=#262626
-  hi NonText guibg=bg guifg=bg gui=NONE ctermfg=bg ctermbg=bg
-  hi CursorLineNR term=bold cterm=bold ctermbg=bg guibg=bg gui=bold
+  if !has("gui_running")
+    " have to return a bunch of color settings after leaving goyo mode
+    hi StatusLine ctermbg=242 ctermfg=234 guibg=#242424 guifg=#242424
+    hi MatchParen cterm=bold ctermbg=none ctermfg=172
+    hi LineNr ctermbg=233 ctermfg=239 guibg=bg guifg=#4e4e4e
+    hi MatchParen guibg=NONE guifg=magenta gui=bold
+    hi CursorLine term=bold cterm=bold ctermbg=233 guibg=bg gui=bold
+    hi StatusLineNC ctermbg=234 ctermfg=234 guibg=#242424 guifg=#242424
+    hi VertSplit ctermbg=234 ctermfg=234 guibg=#262626 guifg=#262626
+    hi NonText guibg=bg guifg=bg gui=NONE ctermfg=bg ctermbg=bg
+    hi CursorLineNR term=bold cterm=bold ctermbg=bg guibg=bg gui=bold
+  endif
 endfunction
 
 autocmd! User GoyoEnter
@@ -511,11 +534,15 @@ set clipboard=unnamed
 
 "----------------------------------------------
 " no line number background
-hi LineNr ctermbg=233 ctermfg=239 guibg=bg guifg=#4e4e4e
+if !has("gui_running")
+  hi LineNr ctermbg=233 ctermfg=239 guibg=bg guifg=#4e4e4e
+endif
 
 "----------------------------------------------
 " vertical split bar for tabs
-hi VertSplit ctermbg=234 ctermfg=234 guibg=#242424 guifg=#242424
+if !has("gui_running")
+  hi VertSplit ctermbg=234 ctermfg=234 guibg=#242424 guifg=#242424
+endif
 
 "----------------------------------------------
 " paste mode default
