@@ -175,7 +175,6 @@ set listchars=tab:▸\ ,eol:¬,trail:·
 let g:indentLine_enabled=0
 
 if has("gui_running")
-  let g:indentLine_enabled=0
   let g:indentLine_char="┆"
   let g:indentLine_showFirstIndentLevel=1
   let g:indentLine_leadingSpaceEnabled=1
