@@ -184,7 +184,8 @@ if has("gui_running")
   let g:indentLine_leadingSpaceEnabled=1
   let g:indentLine_leadingSpaceChar="·"
 else
-  let g:indentLine_char="┆"
+  let g:indentLine_char="┊"
+  let g:indentLine_first_char="┊"
   let g:indentLine_showFirstIndentLevel=1
   let g:indentLine_leadingSpaceEnabled=0
   let g:indentLine_faster=1
