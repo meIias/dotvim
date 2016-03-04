@@ -238,7 +238,7 @@ let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 
 "----------------------------------------------
 " font
-set guifont=M+\ 1mn\ medium:h10
+set guifont=M+\ 1mn\ bold:h12
 
 "----------------------------------------------
 " Basic settings for colorscheme and general look
@@ -251,9 +251,9 @@ endif
 " currently using spaces of length 4
 set number
 syntax on
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 set expandtab
 set smarttab
 set autoindent
@@ -291,8 +291,13 @@ filetype indent on
 set laststatus=2
 if !has("gui_running")
   hi StatusLine ctermbg=241 ctermfg=234 guibg=#242424 guifg=#242424
-  hi StatusLineNC ctermbg=234 ctermfg=234 guibg=#242424 guifg=#242424
+  hi StatusLineNC ctermbg=237 ctermfg=234 guibg=#242424 guifg=#242424
 endif
+
+"----------------------------------------------
+" set color columns
+set cc=80,120
+hi ColorColumn ctermbg=235 ctermfg=235
 
 "----------------------------------------------
 " Remove annoying 'enter or type command..' msg
@@ -439,6 +444,7 @@ function! s:goyo_leave()
     hi VertSplit ctermbg=234 ctermfg=234 guibg=#262626 guifg=#262626
     hi NonText guibg=bg guifg=bg gui=NONE ctermfg=bg ctermbg=bg
     hi CursorLineNR term=bold cterm=bold ctermbg=bg guibg=bg gui=bold
+    hi ColorColumn ctermbg=235 ctermfg=235
   endif
 endfunction
 
