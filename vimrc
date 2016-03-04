@@ -297,7 +297,7 @@ endif
 "----------------------------------------------
 " set color columns
 set cc=80,120
-hi ColorColumn ctermbg=235 ctermfg=235
+hi ColorColumn ctermbg=235
 
 "----------------------------------------------
 " Remove annoying 'enter or type command..' msg
