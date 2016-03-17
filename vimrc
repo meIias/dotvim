@@ -250,6 +250,7 @@ endif
 " settings for indentation, numbering and syntax
 " currently using spaces of length 4
 set number
+set relativenumber
 syntax on
 set tabstop=4
 set shiftwidth=4
