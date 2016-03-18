@@ -160,8 +160,10 @@ Plug 'vim-scripts/a.vim'
 " close buffer with :BD and still leave window open
 Plug 'vim-scripts/bufkill.vim'
 
+" guivim colorscheme
 Plug 'vim-scripts/vydark'
 
+" leading spaces
 Plug 'Yggdroot/indentLine'
 
 call plug#end()
@@ -176,9 +178,10 @@ set list
 set listchars=tab:▸\ ,eol:¬,trail:·
 
 "----------------------------------------------
-let g:indentLine_enabled=1
+let g:indentLine_enabled=0
 
 if has("gui_running")
+  let g:indentLine_enabled=1
   let g:indentLine_char="┆"
   let g:indentLine_showFirstIndentLevel=1
   let g:indentLine_leadingSpaceEnabled=1
@@ -186,10 +189,15 @@ if has("gui_running")
 else
   let g:indentLine_char="┊"
   let g:indentLine_first_char="┊"
-  let g:indentLine_showFirstIndentLevel=1
-  let g:indentLine_leadingSpaceEnabled=0
-  let g:indentLine_faster=1
+  let g:indentLine_leadingSpaceChar="·"
+  let g:indentLine_showFirstIndentLevel=0
+  let g:indentLine_leadingSpaceEnabled=1
+  let g:indentLine_faster=0
 endif
+
+"----------------------------------------------
+" highlight yank color
+hi Flashy term=bold ctermbg=111 guibg=#13354A
 
 "----------------------------------------------
 " flashy
@@ -249,8 +257,7 @@ endif
 "----------------------------------------------
 " settings for indentation, numbering and syntax
 " currently using spaces of length 4
-set number
-set relativenumber
+set relativenumber number
 syntax on
 set tabstop=4
 set shiftwidth=4
