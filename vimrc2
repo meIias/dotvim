@@ -20,6 +20,9 @@ call plug#begin('~/.vim/plugged')
 " vim8 linting
 Plug 'w0rp/ale'
 
+" colorscheme
+Plug 'ewilazarus/preto'
+
 " vim8 grep
 " mapped to leader ac
 Plug 'mhinz/vim-grepper'
@@ -36,9 +39,6 @@ Plug 'deris/vim-shot-f'
 " press ',ww' in two buffers to swap them
 Plug 'wesQ3/vim-windowswap'
 
-" hides messages associated with YCM, like 'not found'
-Plug 'vim-scripts/noerrmsg.vim'
-
 " highlights possible moves when pressing w, b
 Plug 'boucherm/ShowMotion'
 
@@ -54,9 +54,6 @@ Plug 'scrooloose/nerdcommenter'
 
 " file explorer plugin, opening instructions below
 Plug 'scrooloose/nerdtree'
-
-" my fork of the best colorscheme, written by junegunn
-Plug 'vim-scripts/saturn.vim'
 
 " tag outline viewer. ',tg' to open, shows fns, vars, classes, etc
 Plug 'majutsushi/tagbar'
@@ -164,17 +161,11 @@ set autoindent
 "----------------------------------------------
 " colorscheme
 set t_Co=256
-colorscheme saturn
-
-"----------------------------------------------
-" list chars colors
-hi NonText ctermfg=252 ctermbg=255
+colorscheme preto
 
 "----------------------------------------------
 " cursorline will match the bg
 set cursorline
-hi CursorLine term=bold cterm=bold ctermbg=bg
-hi CursorLineNR term=bold cterm=bold ctermbg=bg
 
 "----------------------------------------------
 " For those plugins that need it to run
@@ -187,11 +178,6 @@ filetype indent on
 "----------------------------------------------
 " add a status line, make it dark
 set laststatus=2
-
-"----------------------------------------------
-" set color columns
-set cc=80
-hi ColorColumn ctermbg=254
 
 "----------------------------------------------
 " Remove annoying 'enter or type command..' msg
@@ -271,20 +257,13 @@ set guioptions-=r
 set guioptions-=T
 
 "----------------------------------------------
-" match brackets with color not highlight
-hi MatchParen cterm=bold ctermbg=none ctermfg=172
-
-"----------------------------------------------
 " remove invisible chars in distraction free mode
 function! s:goyo_enter()
   set list!
 endfunction
 
 function! s:goyo_leave()
-    hi ColorColumn ctermbg=254
-    hi NonText ctermfg=252 ctermbg=255
-    hi CursorLine term=bold cterm=bold ctermbg=bg
-    hi CursorLineNR term=bold cterm=bold ctermbg=bg
+    call SetColors()
 endfunction
 
 autocmd! User GoyoEnter
@@ -410,8 +389,8 @@ set wildignore+=$PROJECT_PATH/.tags
 
 "--------------------------------------------
 " linting vim8
-let g:ale_sign_error = '💥'
-let g:ale_sign_warning = '👉'
+let g:ale_sign_error = '⨉ '
+let g:ale_sign_warning = '⚠ '
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
 highlight link ALEErrorSign NONE
 highlight link ALEWarningSign NONE
@@ -444,3 +423,17 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-Y>" : "\<Tab>"
 " attempt autocompletion after 1 char
 let g:acp_behaviorKeywordLength = 1
 
+"--------------------------------------------
+" function to set all colors
+function! SetColors()
+    hi StatusLine cterm=NONE ctermbg=232 ctermfg=243
+    hi StatusLineNC cterm=NONE ctermbg=0 ctermfg=243
+    hi CursorLine term=bold cterm=bold ctermbg=0 ctermfg=NONE
+    hi CursorLineNR term=bold cterm=bold ctermbg=0 ctermfg=NONE
+    hi NonText cterm=NONE ctermbg=bg ctermfg=bg
+    hi VertSplit cterm=NONE ctermbg=bg ctermfg=243
+    hi Directory ctermfg=243
+    hi MatchParen cterm=bold ctermbg=none ctermfg=172
+endfunction
+
+call SetColors()
