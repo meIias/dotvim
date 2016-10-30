@@ -114,6 +114,10 @@ nore ; :
 nore \ ;
 
 "----------------------------------------------
+" no list chars
+set nolist
+
+"----------------------------------------------
 " file encoding default utf8
 scriptencoding utf-8
 set encoding=utf-8
@@ -254,7 +258,7 @@ set guioptions-=T
 "----------------------------------------------
 " remove invisible chars in distraction free mode
 function! s:goyo_enter()
-  set list!
+  set nolist
 endfunction
 
 function! s:goyo_leave()
