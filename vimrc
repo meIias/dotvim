@@ -17,11 +17,11 @@ endif
 " install plugins to /plugged
 call plug#begin('~/.vim/plugged')
 
-" vim8 linting
-Plug 'w0rp/ale'
-
 " colorscheme
-Plug 'ewilazarus/preto'
+Plug 'nightsense/seabird'
+
+" indentline
+Plug 'Yggdroot/indentLine'
 
 " vim8 grep
 " mapped to leader ac
@@ -47,7 +47,7 @@ Plug 'kana/vim-operator-user'
 Plug 'haya14busa/vim-operator-flashy'
 
 " lightweight and fast file finder
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 
 " easy commenting '5,cc' comments 5 lines, '5,cu' uncomments
 Plug 'scrooloose/nerdcommenter'
@@ -58,17 +58,8 @@ Plug 'scrooloose/nerdtree'
 " tag outline viewer. ',tg' to open, shows fns, vars, classes, etc
 Plug 'majutsushi/tagbar'
 
-" misc libraries used by vim plugins
-Plug 'tomtom/tlib_vim'
-
-" more libs used by vim plugins
-Plug 'MarcWeber/vim-addon-mw-utils'
-
 " shows all open buffers in the command window
 Plug 'bling/vim-bufferline'
-
-" async for plugins
-Plug 'tpope/vim-dispatch'
 
 " git for vim, used in statuslines
 Plug 'tpope/vim-fugitive'
@@ -94,7 +85,7 @@ Plug 'mrtazz/DoxygenToolkit.vim'
 " close buffer with :BD and still leave window open
 Plug 'vim-scripts/bufkill.vim'
 
-" auto open the completion menu
+" completion menu
 Plug 'vim-scripts/AutoComplPop'
 
 call plug#end()
@@ -107,6 +98,7 @@ set nocompatible
 " flashy
 map y <Plug>(operator-flashy)
 nmap Y <Plug>(operator-flashy)$
+hi Flashy ctermbg=243
 
 "----------------------------------------------
 "remap : to ; for commands
@@ -116,6 +108,12 @@ nore \ ;
 "----------------------------------------------
 " no list chars
 set nolist
+
+"----------------------------------------------
+" indents
+let g:indentLine_enabled = 0
+let g:indentLine_leadingSpaceChar = '·'
+let g:indentLine_leadingSpaceEnabled = 1
 
 "----------------------------------------------
 " file encoding default utf8
@@ -160,7 +158,7 @@ set autoindent
 "----------------------------------------------
 " colorscheme
 set t_Co=256
-colorscheme preto
+colorscheme petrel
 
 "----------------------------------------------
 " cursorline will match the bg
@@ -193,7 +191,6 @@ set statusline+=\ %{fugitive#statusline()}
 set statusline+=%=
 set statusline+=\ %{noscrollbar#statusline(7,'―','█')}
 set statusline+=\ \ %{tagbar#currenttag('%s','')}()
-set statusline+=\ %{ALEGetStatusLine()}
 set statusline+=\ #%{WindowNumber()}#
 set statusline+=\ %l/%L,
 set statusline+=%c
@@ -215,7 +212,8 @@ let g:bufferline_active_buffer_right = ''
 
 "----------------------------------------------
 " map limelight to , lt
-map <silent> <leader>lt :Limelight!!0.8 <cr>
+map <silent> <leader>lt :Limelight!!<cr>
+let g:limelight_conceal_ctermfg = 238
 
 "----------------------------------------------
 " view current buffer in nerdtree
@@ -403,10 +401,6 @@ nnoremap <leader>ac :Grepper<cr>
 set backspace=indent,eol,start
 
 "--------------------------------------------
-" linter gutter
-let g:ale_sign_column_always = 1
-
-"--------------------------------------------
 " trigger autoread
 au FocusGained,BufEnter * :silent! !
 
@@ -419,18 +413,14 @@ au FocusLost,WinLeave * :silent! w
 inoremap <expr> <Tab> pumvisible() ? "\<C-Y>" : "\<Tab>"
 
 "--------------------------------------------
-" attempt autocompletion after 1 char
-let g:acp_behaviorKeywordLength = 1
-
-"--------------------------------------------
 " function to set all colors
 function! SetColors()
-    hi StatusLine cterm=NONE ctermbg=232 ctermfg=243
-    hi StatusLineNC cterm=NONE ctermbg=0 ctermfg=243
+    hi StatusLine cterm=NONE ctermbg=234 ctermfg=243
+    hi StatusLineNC cterm=NONE ctermbg=234 ctermfg=240
     hi CursorLine term=bold cterm=bold ctermbg=0 ctermfg=NONE
     hi CursorLineNR term=bold cterm=bold ctermbg=0 ctermfg=NONE
     hi NonText cterm=NONE ctermbg=bg ctermfg=bg
-    hi VertSplit cterm=NONE ctermbg=bg ctermfg=243
+    hi VertSplit cterm=NONE ctermbg=234 ctermfg=234
     hi Directory ctermfg=243
     hi MatchParen cterm=bold ctermbg=none ctermfg=172
 endfunction
