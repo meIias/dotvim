@@ -27,6 +27,9 @@ Plug 'fcpg/vim-fahrenheit'
 " mapped to leader ac
 Plug 'mhinz/vim-grepper'
 
+"vim 8 completion
+Plug 'maralla/completor.vim'
+
 " underline instances of word
 Plug 'osyo-manga/vim-brightest'
 
@@ -39,12 +42,11 @@ Plug 'deris/vim-shot-f'
 " press ',ww' in two buffers to swap them
 Plug 'wesQ3/vim-windowswap'
 
+" indent
+Plug 'Yggdroot/indentLine'
+
 " highlights possible moves when pressing w, b
 Plug 'boucherm/ShowMotion'
-
-" highlight yanked area
-Plug 'kana/vim-operator-user'
-Plug 'haya14busa/vim-operator-flashy'
 
 " lightweight and fast file finder
 Plug 'ctrlpvim/ctrlp.vim'
@@ -55,20 +57,8 @@ Plug 'scrooloose/nerdcommenter'
 " file explorer plugin, opening instructions below
 Plug 'scrooloose/nerdtree'
 
-" tag outline viewer. ',tg' to open, shows fns, vars, classes, etc
-Plug 'majutsushi/tagbar'
-
-" misc libraries used by vim plugins
-Plug 'tomtom/tlib_vim'
-
-" more libs used by vim plugins
-Plug 'MarcWeber/vim-addon-mw-utils'
-
 " shows all open buffers in the command window
 Plug 'bling/vim-bufferline'
-
-" async for plugins
-Plug 'tpope/vim-dispatch'
 
 " git for vim, used in statuslines
 Plug 'tpope/vim-fugitive'
@@ -88,25 +78,14 @@ Plug 'junegunn/limelight.vim'
 " distraction free mode
 Plug 'junegunn/goyo.vim'
 
-" commenting and boilerplate
-Plug 'mrtazz/DoxygenToolkit.vim'
-
 " close buffer with :BD and still leave window open
 Plug 'vim-scripts/bufkill.vim'
-
-" auto open the completion menu
-Plug 'vim-scripts/AutoComplPop'
 
 call plug#end()
 
 "----------------------------------------------
 " no compatibility w/ vi
 set nocompatible
-
-"----------------------------------------------
-" flashy
-map y <Plug>(operator-flashy)
-nmap Y <Plug>(operator-flashy)$
 
 "----------------------------------------------
 "remap : to ; for commands
@@ -134,12 +113,20 @@ let NERDTreeMinimalUI = 1
 let NERDTreeIgnore=['\.pyc$','\.tags$']
 
 "----------------------------------------------
-" remove help at top of tagbar window
-let g:tagbar_compact = 1
-
-"----------------------------------------------
 " iterm scrolling
 set mouse=a
+
+"----------------------------------------------
+" indent line
+let g:indentLine_faster=1
+
+"----------------------------------------------
+" completion settings
+let g:completor_min_chars=1
+let g:completor_filesize_limit=20000
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
 
 "----------------------------------------------
 " leader is , for ease of motion
@@ -167,10 +154,6 @@ colorscheme fahrenheit
 set cursorline
 
 "----------------------------------------------
-" margin
-set colorcolumn=80
-
-"----------------------------------------------
 " For those plugins that need it to run
 filetype plugin on
 
@@ -196,8 +179,7 @@ set statusline+=%w
 set statusline+=\ %{fugitive#statusline()}
 set statusline+=%=
 set statusline+=\ %{noscrollbar#statusline(7,'―','█')}
-set statusline+=\ \ %{tagbar#currenttag('%s','')}
-set statusline+=\ %{ALEGetStatusLine()}
+set statusline+=\ \ %{ALEGetStatusLine()}
 set statusline+=\ #%{WindowNumber()}#
 set statusline+=\ %l/%L,
 set statusline+=%c
@@ -224,18 +206,6 @@ map <silent> <leader>lt :Limelight!!0.8 <cr>
 "----------------------------------------------
 " view current buffer in nerdtree
 map <silent> <leader>r :NERDTreeFind<cr>
-
-"----------------------------------------------
-" map tagbar to ,tg to open/close it
-nmap <leader>tg :TagbarToggle<CR>
-
-"----------------------------------------------
-" map dox comment generator to ,/
-map <silent> <leader>/ :Dox <cr>
-
-"----------------------------------------------
-" taglist options
-let g:tagbar_width = 45
 
 "----------------------------------------------
 " window management
@@ -314,10 +284,6 @@ set nobackup
 set shortmess+=I
 
 "----------------------------------------------
-" trim whitespace on save
-autocmd BufWritePre * %s/\s\+$//e
-
-"----------------------------------------------
 " place cursor at last position b4 close on open
 autocmd BufReadPost * normal `"
 
@@ -377,6 +343,8 @@ set undoreload=500
 
 "--------------------------------------------
 " speed up ctrlp
+let g:ctrlp_use_caching = 1
+let g:ctrlp_max_files = 40000
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
@@ -388,16 +356,20 @@ set ignorecase
 
 "--------------------------------------------
 " ignore tags file from search
-set wildignore+=$PROJECT_PATH/.tags
+set wildignore+=*.tags
+set wildignore+=*.pyc
+set wildignore+=**/node_modules
 
 "--------------------------------------------
 " linting vim8
+let g:ale_lint_delay = 100
+let g:ale_lint_on_save = 1
 let g:ale_sign_error = '⨉ '
 let g:ale_sign_warning = '⚠ '
+let g:ale_sign_column_always = 1
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
 highlight link ALEErrorSign NONE
 highlight link ALEWarningSign NONE
-let g:ale_lint_on_save = 1
 
 "--------------------------------------------
 " grepper options
@@ -408,24 +380,12 @@ nnoremap <leader>ac :Grepper<cr>
 set backspace=indent,eol,start
 
 "--------------------------------------------
-" linter gutter
-let g:ale_sign_column_always = 1
-
-"--------------------------------------------
 " trigger autoread
 au FocusGained,BufEnter * :silent! !
 
 "--------------------------------------------
 " save on focus lost
 au FocusLost,WinLeave * :silent! w
-
-"--------------------------------------------
-" autocomplete accept with tab
-inoremap <expr> <Tab> pumvisible() ? "\<C-Y>" : "\<Tab>"
-
-"--------------------------------------------
-" attempt autocompletion after 1 char
-let g:acp_behaviorKeywordLength = 1
 
 "--------------------------------------------
 " function to set all colors
