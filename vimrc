@@ -28,7 +28,8 @@ Plug 'fcpg/vim-fahrenheit'
 Plug 'mhinz/vim-grepper'
 
 "vim 8 completion
-Plug 'maralla/completor.vim'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'yami-beta/asyncomplete-omni.vim'
 
 " underline instances of word
 Plug 'osyo-manga/vim-brightest'
@@ -38,12 +39,6 @@ Plug 'Lokaltog/vim-easymotion'
 
 " press 'f' to highlight all possible line movements
 Plug 'deris/vim-shot-f'
-
-" press ',ww' in two buffers to swap them
-Plug 'wesQ3/vim-windowswap'
-
-" indent
-Plug 'Yggdroot/indentLine'
 
 " highlights possible moves when pressing w, b
 Plug 'boucherm/ShowMotion'
@@ -57,9 +52,6 @@ Plug 'scrooloose/nerdcommenter'
 " file explorer plugin, opening instructions below
 Plug 'scrooloose/nerdtree'
 
-" shows all open buffers in the command window
-Plug 'bling/vim-bufferline'
-
 " git for vim, used in statuslines
 Plug 'tpope/vim-fugitive'
 
@@ -68,9 +60,6 @@ Plug 'airblade/vim-gitgutter'
 
 " matching braces and such
 Plug 'kana/vim-smartinput'
-
-" file scrollbar for the statusline
-Plug 'gcavallanti/vim-noscrollbar'
 
 " dims all text except the current paragraph
 Plug 'junegunn/limelight.vim'
@@ -122,11 +111,16 @@ let g:indentLine_faster=1
 
 "----------------------------------------------
 " completion settings
-let g:completor_min_chars=1
-let g:completor_filesize_limit=20000
+set completeopt-=preview
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
+" register completion
+call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
+\ 'name': 'omni',
+\ 'whitelist': ['*'],
+\ 'completor': function('asyncomplete#sources#omni#completor')
+\  }))
 
 "----------------------------------------------
 " leader is , for ease of motion
@@ -135,7 +129,10 @@ let mapleader=","
 "----------------------------------------------
 " settings for indentation, numbering and syntax
 " currently using spaces of length 4
-set relativenumber number
+" commenting out relative number,
+"  since it seems to cause a slowdown
+"set relativenumber number
+set number
 syntax on
 set tabstop=4
 set shiftwidth=4
@@ -151,7 +148,11 @@ colorscheme fahrenheit
 
 "----------------------------------------------
 " cursorline will match the bg
-set cursorline
+set nocul
+
+"----------------------------------------------
+" improved paste
+nnoremap <Leader>p p`[v`]=
 
 "----------------------------------------------
 " For those plugins that need it to run
@@ -178,12 +179,10 @@ set statusline+=%h
 set statusline+=%w
 set statusline+=\ %{fugitive#statusline()}
 set statusline+=%=
-set statusline+=\ %{noscrollbar#statusline(7,'―','█')}
 set statusline+=\ \ %{ALEGetStatusLine()}
-set statusline+=\ #%{WindowNumber()}#
+set statusline+=\ s%{WindowNumber()}
 set statusline+=\ %l/%L,
 set statusline+=%c
-set statusline+=\ %y
 
 "----------------------------------------------
 " map buffer switch to ctrlj ctrlk
@@ -191,13 +190,6 @@ map <C-K> :bnext<CR>
 map <C-J> :bprev<CR>
 map <C-L> :tabn<CR>
 map <C-H> :tabp<CR>
-
-"----------------------------------------------
-" bufferline don't echo in command bar
-let g:bufferline_echo = 1
-let g:bufferline_show_bufnr = 0
-let g:bufferline_active_buffer_left = ''
-let g:bufferline_active_buffer_right = ''
 
 "----------------------------------------------
 " map limelight to , lt
@@ -244,7 +236,7 @@ autocmd! User GoyoLeave
 autocmd  User GoyoEnter nested call <SID>goyo_enter()
 autocmd  User GoyoLeave nested call <SID>goyo_leave()
 
-let g:goyo_width=81
+let g:goyo_width=120
 
 "----------------------------------------------
 " goyo mapping
@@ -367,9 +359,17 @@ let g:ale_lint_on_save = 1
 let g:ale_sign_error = '⨉ '
 let g:ale_sign_warning = '⚠ '
 let g:ale_sign_column_always = 1
-let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_statusline_format = ['e%d', 'w%d', '']
 highlight link ALEErrorSign NONE
 highlight link ALEWarningSign NONE
+
+"--------------------------------------------
+" linting search
+nmap <silent> <C-q> <Plug>(ale_previous_wrap)
+nmap <silent> <C-w> <Plug>(ale_next_wrap)
 
 "--------------------------------------------
 " grepper options
@@ -390,15 +390,16 @@ au FocusLost,WinLeave * :silent! w
 "--------------------------------------------
 " function to set all colors
 function! SetColors()
-    hi StatusLine cterm=NONE ctermbg=95 ctermfg=229
-    hi StatusLineNC cterm=NONE ctermbg=95 ctermfg=233
+    hi StatusLine cterm=NONE ctermbg=bg ctermfg=236
+    hi StatusLineNC cterm=NONE ctermbg=bg ctermfg=234
     hi CursorLine term=bold cterm=bold ctermbg=0 ctermfg=NONE
     hi CursorLineNR term=bold cterm=bold ctermbg=0 ctermfg=NONE
     hi NonText cterm=NONE ctermbg=bg ctermfg=bg
-    hi VertSplit cterm=NONE ctermbg=95 ctermfg=95
+    hi VertSplit cterm=NONE ctermbg=bg ctermfg=bg
     hi Directory ctermfg=243
-    hi MatchParen cterm=bold ctermbg=none ctermfg=172
-    hi ColorColumn ctermbg=234 ctermfg=NONE
+    hi MatchParen cterm=bold ctermbg=none ctermfg=171
+    hi ColorColumn ctermbg=233 ctermfg=NONE
+    hi LineNr ctermfg=236 ctermbg=NONE
 endfunction
 
 call SetColors()
