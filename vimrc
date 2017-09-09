@@ -28,11 +28,13 @@ Plug 'fcpg/vim-fahrenheit'
 Plug 'mhinz/vim-grepper'
 
 "vim 8 completion
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'yami-beta/asyncomplete-omni.vim'
+Plug 'lifepillar/vim-mucomplete'
 
 " underline instances of word
 Plug 'osyo-manga/vim-brightest'
+
+" list buffers
+Plug 'bling/vim-bufferline'
 
 " easymotion moves through a buffer by typing ',,w'
 Plug 'Lokaltog/vim-easymotion'
@@ -111,16 +113,23 @@ let g:indentLine_faster=1
 
 "----------------------------------------------
 " completion settings
+set shortmess+=c
 set completeopt-=preview
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
-" register completion
-call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
-\ 'name': 'omni',
-\ 'whitelist': ['*'],
-\ 'completor': function('asyncomplete#sources#omni#completor')
-\  }))
+set completeopt+=menuone
+set completeopt+=noselect
+let g:mucomplete#no_mappings = 1
+let g:mucomplete#enable_auto_at_startup = 1
+inoremap <expr> <c-e> mucomplete#popup_exit("\<c-e>")
+inoremap <expr> <c-y> mucomplete#popup_exit("\<c-y>")
+inoremap <expr>  <cr> mucomplete#popup_exit("\<cr>")
+imap <tab> <plug>(MUcompleteFwd)
+imap <s-tab> <plug>(MUcompleteBwd)
+
+"----------------------------------------------
+" bufferline
+let g:bufferline_show_bufnr = 0
+let g:bufferline_active_buffer_left = ''
+let g:bufferline_active_buffer_right = ''
 
 "----------------------------------------------
 " leader is , for ease of motion
@@ -236,7 +245,7 @@ autocmd! User GoyoLeave
 autocmd  User GoyoEnter nested call <SID>goyo_enter()
 autocmd  User GoyoLeave nested call <SID>goyo_leave()
 
-let g:goyo_width=120
+let g:goyo_width=140
 
 "----------------------------------------------
 " goyo mapping
@@ -390,15 +399,15 @@ au FocusLost,WinLeave * :silent! w
 "--------------------------------------------
 " function to set all colors
 function! SetColors()
-    hi StatusLine cterm=NONE ctermbg=bg ctermfg=236
-    hi StatusLineNC cterm=NONE ctermbg=bg ctermfg=234
+    hi StatusLine cterm=NONE ctermbg=bg ctermfg=244
+    hi StatusLineNC cterm=NONE ctermbg=bg ctermfg=236
     hi CursorLine term=bold cterm=bold ctermbg=0 ctermfg=NONE
     hi CursorLineNR term=bold cterm=bold ctermbg=0 ctermfg=NONE
     hi NonText cterm=NONE ctermbg=bg ctermfg=bg
-    hi VertSplit cterm=NONE ctermbg=bg ctermfg=bg
+    hi VertSplit cterm=NONE ctermbg=244 ctermfg=244
     hi Directory ctermfg=243
     hi MatchParen cterm=bold ctermbg=none ctermfg=171
-    hi ColorColumn ctermbg=233 ctermfg=NONE
+    hi ColorColumn ctermbg=NONE ctermfg=NONE
     hi LineNr ctermfg=236 ctermbg=NONE
 endfunction
 
