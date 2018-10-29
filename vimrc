@@ -23,12 +23,16 @@ Plug 'w0rp/ale'
 " colorscheme
 Plug 'fcpg/vim-fahrenheit'
 
+" file finder
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+" indent lines
+Plug 'Yggdroot/indentLine'
+
 " vim8 grep
 " mapped to leader ac
 Plug 'mhinz/vim-grepper'
-
-"vim 8 completion
-Plug 'lifepillar/vim-mucomplete'
 
 " underline instances of word
 Plug 'osyo-manga/vim-brightest'
@@ -44,9 +48,6 @@ Plug 'deris/vim-shot-f'
 
 " highlights possible moves when pressing w, b
 Plug 'boucherm/ShowMotion'
-
-" lightweight and fast file finder
-Plug 'ctrlpvim/ctrlp.vim'
 
 " easy commenting '5,cc' comments 5 lines, '5,cu' uncomments
 Plug 'scrooloose/nerdcommenter'
@@ -117,13 +118,6 @@ set shortmess+=c
 set completeopt-=preview
 set completeopt+=menuone
 set completeopt+=noselect
-let g:mucomplete#no_mappings = 1
-let g:mucomplete#enable_auto_at_startup = 1
-inoremap <expr> <c-e> mucomplete#popup_exit("\<c-e>")
-inoremap <expr> <c-y> mucomplete#popup_exit("\<c-y>")
-inoremap <expr>  <cr> mucomplete#popup_exit("\<cr>")
-imap <tab> <plug>(MUcompleteFwd)
-imap <s-tab> <plug>(MUcompleteBwd)
 
 "----------------------------------------------
 " bufferline
@@ -188,7 +182,6 @@ set statusline+=%h
 set statusline+=%w
 set statusline+=\ %{fugitive#statusline()}
 set statusline+=%=
-set statusline+=\ \ %{ALEGetStatusLine()}
 set statusline+=\ s%{WindowNumber()}
 set statusline+=\ %l/%L,
 set statusline+=%c
@@ -343,15 +336,6 @@ set undolevels=500
 set undoreload=500
 
 "--------------------------------------------
-" speed up ctrlp
-let g:ctrlp_use_caching = 1
-let g:ctrlp_max_files = 40000
-let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-if executable('ag')
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-endif
-
-"--------------------------------------------
 " search
 set ignorecase
 
@@ -395,6 +379,15 @@ au FocusGained,BufEnter * :silent! !
 "--------------------------------------------
 " save on focus lost
 au FocusLost,WinLeave * :silent! w
+
+"--------------------------------------------
+" map file finder
+map <leader>f :Files<CR>
+
+"--------------------------------------------
+" indents
+let g:indentLine_first_char = '┆'
+let g:indentLine_indentLevel = 5
 
 "--------------------------------------------
 " function to set all colors
