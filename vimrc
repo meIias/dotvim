@@ -17,11 +17,14 @@ endif
 " install plugins to /plugged
 call plug#begin('~/.vim/plugged')
 
-" vim8 linting
-Plug 'w0rp/ale'
+" babby completion
+Plug 'ackyshake/VimCompletesMe'
+
+" vim8 linter
+Plug 'dense-analysis/ale'
 
 " colorscheme
-Plug 'fcpg/vim-fahrenheit'
+Plug 'smallwat3r/vim-efficient'
 
 " file finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -147,7 +150,7 @@ set autoindent
 "----------------------------------------------
 " colorscheme
 set t_Co=256
-colorscheme fahrenheit
+colorscheme efficient
 
 "----------------------------------------------
 " cursorline will match the bg
@@ -351,7 +354,7 @@ let g:ale_lint_delay = 100
 let g:ale_lint_on_save = 1
 let g:ale_sign_error = '⨉ '
 let g:ale_sign_warning = '⚠ '
-let g:ale_sign_column_always = 1
+let g:ale_set_highlights = 0
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
@@ -390,18 +393,27 @@ let g:indentLine_first_char = '┆'
 let g:indentLine_indentLevel = 5
 
 "--------------------------------------------
+" Vim 8+ sign column moves into num col
+set signcolumn=number
+
+"--------------------------------------------
 " function to set all colors
+
 function! SetColors()
+    hi Normal ctermbg=black
     hi StatusLine cterm=NONE ctermbg=bg ctermfg=244
     hi StatusLineNC cterm=NONE ctermbg=bg ctermfg=236
     hi CursorLine term=bold cterm=bold ctermbg=0 ctermfg=NONE
     hi CursorLineNR term=bold cterm=bold ctermbg=0 ctermfg=NONE
     hi NonText cterm=NONE ctermbg=bg ctermfg=bg
-    hi VertSplit cterm=NONE ctermbg=244 ctermfg=244
+    hi VertSplit cterm=NONE ctermbg=236 ctermfg=236
     hi Directory ctermfg=243
     hi MatchParen cterm=bold ctermbg=none ctermfg=171
     hi ColorColumn ctermbg=NONE ctermfg=NONE
     hi LineNr ctermfg=236 ctermbg=NONE
+    hi gitGutterAdd ctermbg=NONE
+    hi gitGutterChange ctermbg=NONE
+    hi gitGutterDelete ctermbg=NONE
 endfunction
 
 call SetColors()
